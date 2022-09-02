@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <!-- TODO: 1) FULL redesign site-->
 <!-- TODO: 2) cange texts in normal-->
+
+
 <?php use Models\Navigate; ?>
 <html>
 <head>

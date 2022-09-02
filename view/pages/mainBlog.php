@@ -5,13 +5,13 @@
             <div class="col-md-12">
                 <div class="full">
                     <h3>Blog List</h3>
-
                     <div class="bolg-filters">
                         <div class="sortNode">
                             <div class="tag-sort">
                                 <div class="categories-sort-header">
                                     TAGS
                                 </div>
+<!--                                TODO: working filters-->
                                 <div class="tag-sort-content">
                                     <?php
                                     $filters = new \Models\tags();
@@ -43,45 +43,6 @@
         </div>
     </div>
 </section>
-
-<div class="blog-content">
-    <div class="blog-context row">
-        <?php
-        $posts = new \Models\post();
-        $postContent = $posts->getAllPosts();
-        if (count($postContent) > 3){
-            for ($i = 0; $i < count($postContent); $i++) {
-                $value = $postContent[$i];
-                ?>
-                <div class="col-sm-6 col-md-4 col-lg-3 blog-container">
-                    <div class="box">
-                        <h6><?= $value->dateOfPublication ?></h6>
-                        <div class="img-box">
-                            <img class="blog-img-box" src="images/<?= $value->imgSrc ?>.png"
-                                 alt="<?= $value->altSrc ?>">
-                        </div>
-                        <button class="blog-read-button" >
-                            <a href="/blog/post?slug=<?= $value->slug ?>">Go Read</a>
-                        </button>
-                        <div class="blog-detail-box">
-                            <h4>
-                                <?= $value->categoryName ?>                            </h4>
-                            <h5>
-                                <?= $value->title ?>                            </h5>
-                            <h6>
-                                <?= $value->slogan ?>                            </h6>
-                        </div>
-                    </div>
-                </div>
-            <?}
-        }
-        ?>
-
-    </div>
-</div>
-
-<!-- end inner page section -->
-<!-- why section -->
 <section class="why_section layout_padding">
     <div class="container">
         <div class="heading_container heading_center">
@@ -334,4 +295,38 @@
         </div>
     </div>
 </section>
-<!-- end why section -->
+<div filter class="blog-pagination-filter">
+    <div class="dropdown">
+        <ul class="dropdsown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="/blog/?count=3/">3</a></li>
+            <li><a class="dropdown-item" href="/blog/?count=5/">5</a></li>
+            <li><a class="dropdown-item" href="/blog/?count=10">10</a></li>
+            <li><a class="dropdown-item" href="/blog/?count=15">15</a></li>
+        </ul>
+    </div>
+</div>
+<div class="blog">
+    <div class="blog-content">
+        <div class="blog-context row">
+            <?php
+            $posts = new \Models\post();
+            $postContent = $posts->getAllPosts();
+            if(isset($data["pagination"]["currentPage"])){
+                $starterPosition = $data["pagination"]["currentPage"];
+            }
+            else{
+                $starterPosition = 0;
+            }
+            for ($i = $starterPosition*3; $i < (int)$data["pagination"]["postsCount"] + $starterPosition*3; $i++) {
+                if(isset($postContent[$i])){
+                    \App\Pagination::printElem($postContent[$i]);
+                }
+            }
+            echo "<div class = 'page-count-container'>";
+            ?>
+        </div>
+    </div>
+</div>
+<!--Pagination controll buttons-->
+    <?php \App\Pagination::printControlPanel($data["pagination"],count($postContent),$data["href"]) ?>
+

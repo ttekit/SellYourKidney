@@ -40,3 +40,9 @@ function myMap() {
     };
     var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 }
+
+
+
+
+<!--TODO: перевести пагинацию на классы-->
+<!--TODO: перевести весь JS на PHP-->

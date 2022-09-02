@@ -49,3 +49,6 @@ function varDump($obj){
     var_dump($obj);
     echo '</pre>';
 }
+function str_contains($haystack, $needle) {
+    return $needle !== '' && mb_strpos($haystack, $needle) !== false;
+}
