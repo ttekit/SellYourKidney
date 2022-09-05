@@ -14,7 +14,9 @@ class comments extends \App\DBEngine
             "post_id"=>$postId
         ]);
     }
-
+    public function getById($id){
+       return parent::executeQuery("SELECT * FROM comments WHERE post_id =".$id);
+    }
     public function makeNewComment($login, $email, $comment, $dateOfComment, $client_ip)
     {
         return $this->addRow([

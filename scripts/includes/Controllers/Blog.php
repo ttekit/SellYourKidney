@@ -15,11 +15,13 @@ class Blog extends Controller
         }
 
         if(isset($_GET["count"])){
-            echo $_GET["count"];
             $this->data["pagination"]["postsCount"] = $_GET["count"];
         }
         else{
             $this->data["pagination"]["postsCount"] = 3;
+        }
+        if(isset($_GET["filter"])){
+            $this->data["blog"]["filter"] = $_GET["filter"];
         }
 
         $this->data["href"] = $_SERVER["REQUEST_URI"];

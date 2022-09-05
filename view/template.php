@@ -2,6 +2,12 @@
 <!-- TODO: 1) FULL redesign site-->
 <!-- TODO: 2) cange texts in normal-->
 
+<!-- jQery -->
+<script src="/assets/js/jquery-3.4.1.min.js"></script>
+<!-- popper js -->
+<script src="/assets/js/popper.min.js"></script>
+<!-- bootstrap js -->
+<script src="/assets/js/bootstrap.js"></script>
 
 <?php use Models\Navigate; ?>
 <html>
@@ -246,12 +252,7 @@
 <div class="cpy_">
     <p>© 2021 All Rights Reserved By <a href="https://html.design/">Free Html Templates</a></p>
 </div>
-<!-- jQery -->
-<script src="/assets/js/jquery-3.4.1.min.js"></script>
-<!-- popper js -->
-<script src="/assets/js/popper.min.js"></script>
-<!-- bootstrap js -->
-<script src="/assets/js/bootstrap.js"></script>
+
 <!-- custom js -->
 <script src="/assets/js/custom.js"></script>
 <!-- chane color of item on nav panel-->

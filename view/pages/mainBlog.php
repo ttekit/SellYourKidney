@@ -11,14 +11,13 @@
                                 <div class="categories-sort-header">
                                     TAGS
                                 </div>
-<!--                                TODO: working filters-->
+
                                 <div class="tag-sort-content">
                                     <?php
                                     $filters = new \Models\tags();
                                     $filtersBtn = $filters->getAllNotEmptyTegs();
-                                    foreach ($filtersBtn as $key => $value) {
-                                        echo "<button class='filterBtn'><h6>" . $value->tag . ".</h6></button>";
-                                    } ?>
+                                    \App\Pagination::printTagsPanel($filtersBtn, $data["href"]);
+                                    ?>
                                 </div>
 
                             </div>
@@ -29,8 +28,8 @@
                                 <div class="categories-sort-content">
                                     <?php
                                     $filters = new \Models\categories();
-                                    $filtersBtn = $filters->getAllNotEmptyTegs();
-                                    foreach ($filtersBtn as $key => $value) {
+                                    $filtersBtnC = $filters->getAllNotEmptyTegs();
+                                    foreach ($filtersBtnC as $key => $value) {
                                         echo "<button class='filterBtn'><h6>" . $value->category . ".</h6></button>";
                                     } ?>
                                 </div>
@@ -303,6 +302,8 @@
             <li><a class="dropdown-item" href="/blog/?count=10">10</a></li>
             <li><a class="dropdown-item" href="/blog/?count=15">15</a></li>
         </ul>
+        <ul class="dropdsown-menu" aria-labelledby="dropdownMenuButton1">
+        </ul>
     </div>
 </div>
 <div class="blog">
@@ -311,22 +312,38 @@
             <?php
             $posts = new \Models\post();
             $postContent = $posts->getAllPosts();
-            if(isset($data["pagination"]["currentPage"])){
+
+            if (isset($data["pagination"]["currentPage"])) {
                 $starterPosition = $data["pagination"]["currentPage"];
-            }
-            else{
+            } else {
                 $starterPosition = 0;
             }
-            for ($i = $starterPosition*3; $i < (int)$data["pagination"]["postsCount"] + $starterPosition*3; $i++) {
-                if(isset($postContent[$i])){
+            $tmp = [];
+            foreach ($postContent as $key => $value) {
+                if (isset($data["blog"]["filter"])) {
+                    if ($value->tagName == $data["blog"]["filter"]) {
+                        array_push($tmp, $value);
+                    }
+                } else {
+                    array_push($tmp, $value);
+                }
+            }
+            $postContent = $tmp;
+            unset($tmp);
+
+            for ($i = $starterPosition * 3; $i < (int)$data["pagination"]["postsCount"] + $starterPosition * 3; $i++) {
+                if (isset($postContent[$i])) {
                     \App\Pagination::printElem($postContent[$i]);
                 }
+
             }
             echo "<div class = 'page-count-container'>";
             ?>
         </div>
     </div>
 </div>
-<!--Pagination controll buttons-->
-    <?php \App\Pagination::printControlPanel($data["pagination"],count($postContent),$data["href"]) ?>
 
+<!--Pagination controll buttons-->
+<?php if ($data["pagination"]["postsCount"] < count($postContent)) {
+    \App\Pagination::printControlPanel($data["pagination"], count($postContent), $data["href"]);
+} ?>

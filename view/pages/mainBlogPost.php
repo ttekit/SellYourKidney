@@ -13,7 +13,7 @@
                         Start Bootstrap
                     </div>
                     <!-- Post categories-->
-
+                    <div class="hidden post-id"><?= $data["pageData"]->id ?></div>
                     <div class="badge bg-secondary text-decoration-none link-light"><?= $data["pageData"]->tags ?></div>
 
                 </header>
@@ -23,7 +23,7 @@
                 <!-- Post content-->
                 <section class="mb-5">
 
-                    <p class="fs-5 mb-4"><?=$data["pageData"]->content?></p>
+                    <p class="fs-5 mb-4"><?= $data["pageData"]->content ?></p>
                 </section>
             </article>
             <!-- Comments section-->
@@ -87,13 +87,13 @@
             <!-- Categories widget-->
             <div class="mb-4">
                 <p style="color: white">Categories</p>
-                    <div class="row">
-                        <div class="badge bg-secondary text-decoration-none link-light"><?= $data["pageData"]->categories ?></div>
-                    </div>
+                <div class="row">
+                    <div class="badge bg-secondary text-decoration-none link-light"><?= $data["pageData"]->categories ?></div>
                 </div>
             </div>
-</div>
-<!-- Bootstrap core JS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Core theme JS-->
-<script src="/assets/js/blogComments.js">
+        </div>
+    </div>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="/assets/js/blogComments.js">
