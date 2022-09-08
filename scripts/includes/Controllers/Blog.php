@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Models\comments;
 use Models\post;
 
 class Blog extends Controller
@@ -32,6 +33,7 @@ class Blog extends Controller
 
     public function post(){
             if(isset($_GET["slug"])){
+                $this->data["error"] = null;
                 $slug = $_GET["slug"];
                 $postM = new post();
                 $onePost = $postM->getBySlug($slug);
@@ -43,6 +45,7 @@ class Blog extends Controller
                 }
             }
     }
+
     public function __construct()
     {
     }

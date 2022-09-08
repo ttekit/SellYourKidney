@@ -23,4 +23,36 @@ class Ajax extends Controller
             echo "xD nice try";
         }
     }
+    public function getSubComments(){
+        if($_SERVER["REQUEST_METHOD"] == "POST"){
+            if(isset($_POST["parentId"])){
+                $parentId = $_POST["parentId"];
+                $commentsM = new comments();
+
+                echo json_encode($commentsM->getSubCommentsBParentId($parentId), JSON_UNESCAPED_UNICODE);
+            }
+
+        }
+        else{
+            echo "ok";
+        }
+    }
+    public function saveComment(){
+        if($_SERVER["REQUEST_METHOD"]== "POST"){
+            if(isset($_POST["postId"]) && isset($_POST["login"]) && isset($_POST["email"]) && isset($_POST["message"])){
+                if(isset($_POST["messageId"])){
+                    $messageId=$_POST["messageId"];
+                }
+                else{
+                    $messageId = "NULL";
+                }
+                $postId = $_POST["postId"];
+                $login = $_POST["login"];
+                $email = $_POST["email"];
+                $message = $_POST["message"];
+                $commentsM = new comments();
+                echo $commentsM->insertNewComment($postId,$login,$email,$message, $messageId);
+            }
+        }
+    }
 }

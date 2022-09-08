@@ -1130,6 +1130,15 @@ div.form_sub .field input[type="email"], div.form_sub .field input[type="email"]
     margin: 2px;
 
 }
+.comment-id{
+    display: none;
+}
+.comment-header{
+    display: flex;
+}
+.hidden{
+    display: none;
+}
 .form_sub input[type="email"] + input[type="submit"] {
     position: absolute;
     right: 0;
@@ -1142,7 +1151,12 @@ div.form_sub .field input[type="email"], div.form_sub .field input[type="email"]
     font-weight: 600;
     padding: 0 15px;
 }
-
+.media{
+    flex-direction: column;
+}
+.media .child{
+    margin-left: 50px;
+}
 form input {
     background: #fff;
     border: solid #ccc 1px;
