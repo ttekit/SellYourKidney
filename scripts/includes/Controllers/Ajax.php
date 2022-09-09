@@ -55,4 +55,14 @@ class Ajax extends Controller
             }
         }
     }
-}
+    public function saveOptions(){
+        if(UserAuthorisation::isUserAuthorized()){
+            if(isset($_POST["name"]) && isset($_POST["value"])){
+                $name = $_POST["name"];
+                $value = $_POST["value"];
+                $optionM = new options();
+                $optionM->add($name, $value);
+                echo "SADASD";
+            }
+        }
+    }}

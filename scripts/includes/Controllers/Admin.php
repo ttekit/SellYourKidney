@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Models\options;
+
 class admin extends Controller
 {
     public function index(){
@@ -15,6 +17,7 @@ class admin extends Controller
             $this->Login();
         }
     }
+
     public function Login(){
         View::render(VIEWS_PATH."admtemplate".EXT, ADM_ALL_PAGES_PATH."mainAdminLogin".EXT, $this->data);
     }
