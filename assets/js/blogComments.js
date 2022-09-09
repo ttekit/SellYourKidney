@@ -126,7 +126,7 @@ window.addEventListener("load", function () {
         });
         $block.find(".comment-answer-btn").on("click", function (e) {
             $(e.target).addClass("hidden");
-            $block.append(getAnswerFrom($block, comment));
+            $block.append(getAnswerFrom($block, data));
         })
         return $block;
     }

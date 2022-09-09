@@ -2,6 +2,7 @@
 
 namespace App {
 
+    use Cassandra\Varint;
     use PDO;
     use Exception;
 
@@ -107,6 +108,7 @@ namespace App {
                     }
                 }
             }
+
             $query .= " ORDER BY " . $by . " " . $order . " LIMIT " . $count . " OFFSET " . $offset;
             $sth = $this->_dbh->prepare($query);
             $sth->execute();

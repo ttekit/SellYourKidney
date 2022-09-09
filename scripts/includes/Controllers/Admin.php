@@ -8,39 +8,105 @@ class admin extends Controller
         $this->data["error"] = null;
         $this->data["success"] = null;
         $this->data["message"] = null;
-        $this->format_options();
-        $this->returnNavigationPanel();
-        $this->Login();
+        if(UserAuthorisation::isUserAuthorized()){
+            View::render(VIEWS_PATH."admtemplate".EXT, ADM_ALL_PAGES_PATH."mainAdminPanel".EXT, $this->data);
+        }
+        else{
+            $this->Login();
+        }
     }
     public function Login(){
-        View::render(VIEWS_PATH."template".EXT, PAGES_PATH."mainAdminLogin".EXT, $this->data);
+        View::render(VIEWS_PATH."admtemplate".EXT, ADM_ALL_PAGES_PATH."mainAdminLogin".EXT, $this->data);
     }
-    public function adminLogin(){
+    public function check(){
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             if(isset($_POST["email"]) && isset($_POST["password"])){
                 $email = htmlspecialchars(trim($_POST["email"]));
-                $password = htmlspecialchars(trim($_POST["password"]));
-
-                if ($email != ADMAIL) {
-                    $this->data["error"] = "incorrect data";
+                $password = hash("sha256", htmlspecialchars(trim($_POST["password"])));
+                if(UserAutrntification::isUserValid($email, $password) != null){
+                    UserAuthorisation::AuthorizedExecute();
+                    header("Location: /admin/index");
+                }else{
+                    $this->Login();
                 }
-                if($password != ADPASS){
-                    $this->data["error"] = "incorrect data";
-                }
-
-
+                //UserAuthorisation::isUserAuthorized();
             }
         }
-
-        if($this->data["error"] == null){
-            View::render(VIEWS_PATH."template".EXT, PAGES_PATH."mainAdminPanel".EXT, $this->data);
-
+    }
+    public function buttons(){
+        if(UserAuthorisation::isUserAuthorized()){
+            View::render(VIEWS_PATH."admtemplate".EXT, ADM_ALL_PAGES_PATH."buttons".EXT, $this->data);
         }
         else{
-            $this->format_options();
-            $this->returnNavigationPanel();
-            View::render(VIEWS_PATH . "template" . EXT, PAGES_PATH . "mainIndex" . EXT, $this->data);
+            $this->Login();
         }
-
+    }
+    public function cards(){
+        if(UserAuthorisation::isUserAuthorized()){
+            View::render(VIEWS_PATH."admtemplate".EXT, ADM_ALL_PAGES_PATH."cards".EXT, $this->data);
+        }
+        else{
+            $this->Login();
+        }
+    }
+    public function colors(){
+        if(UserAuthorisation::isUserAuthorized()){
+            View::render(VIEWS_PATH."admtemplate".EXT, ADM_ALL_PAGES_PATH."colors".EXT, $this->data);
+        }
+        else{
+            $this->Login();
+        }
+    }
+    public function borders(){
+        if(UserAuthorisation::isUserAuthorized()){
+            View::render(VIEWS_PATH."admtemplate".EXT, ADM_ALL_PAGES_PATH."borders".EXT, $this->data);
+        }
+        else{
+            $this->Login();
+        }
+    }
+    public function animations(){
+        if(UserAuthorisation::isUserAuthorized()){
+            View::render(VIEWS_PATH."admtemplate".EXT, ADM_ALL_PAGES_PATH."animations".EXT, $this->data);
+        }
+        else{
+            $this->Login();
+        }
+    }
+    public function other(){
+        if(UserAuthorisation::isUserAuthorized()){
+            View::render(VIEWS_PATH."admtemplate".EXT, ADM_ALL_PAGES_PATH."other".EXT, $this->data);
+        }
+        else{
+            $this->Login();
+        }
+    }
+    public function forgotPassword(){
+        if(UserAuthorisation::isUserAuthorized()){
+            View::render(VIEWS_PATH."admtemplate".EXT, ADM_ALL_PAGES_PATH."forgotPassword".EXT, $this->data);
+        }
+        else{
+            $this->Login();
+        }
+    }
+    public function charts(){
+        if(UserAuthorisation::isUserAuthorized()){
+            View::render(VIEWS_PATH."admtemplate".EXT, ADM_ALL_PAGES_PATH."charts".EXT, $this->data);
+        }
+        else{
+            $this->Login();
+        }
+    }
+    public function tables(){
+        if(UserAuthorisation::isUserAuthorized()){
+            View::render(VIEWS_PATH."admtemplate".EXT, ADM_ALL_PAGES_PATH."tables".EXT, $this->data);
+        }
+        else{
+            $this->Login();
+        }
+    }
+    public function logOut(){
+        session_destroy();
+        header: "Location: /main";
     }
 }

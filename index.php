@@ -1,5 +1,6 @@
 <?php
     namespace App;
+    session_start();
     namespace Models;
 
     use App\Controller;

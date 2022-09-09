@@ -41,7 +41,7 @@ class Blog extends Controller
                     $this->data["pageData"] = $onePost;
                     $this->format_options();
                     $this->returnNavigationPanel();
-                    View::render(VIEWS_PATH . "template" . EXT, PAGES_PATH . "mainBlogPost" . EXT, $this->data);
+                    View::render(VIEWS_PATH . "admtemplate" . EXT, PAGES_PATH . "mainBlogPost" . EXT, $this->data);
                 }
             }
     }
