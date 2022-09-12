@@ -28,7 +28,7 @@
                                 <div class="categories-sort-content">
                                     <?php
                                     $filters = new \Models\categories();
-                                    $filtersBtnC = $filters->getAllNotEmptyTegs();
+                                    $filtersBtnC = $filters->getAllNotEmptyCategories();
                                     foreach ($filtersBtnC as $key => $value) {
                                         echo "<button class='filterBtn'><h6>" . $value->category . ".</h6></button>";
                                     } ?>

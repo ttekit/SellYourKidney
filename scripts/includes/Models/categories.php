@@ -26,7 +26,10 @@ class categories extends \App\DBEngine
             'category' => $category,
         ]);
     }
-    public function getAllNotEmptyTegs(){
+    public function getAllNotEmptyCategories(){
         return $this->executeQuery("SELECT categories.category FROM categories WHERE categories.countPosts > 0");
+    }
+    public function getAllCategories(){
+        return $this->executeQuery("SELECT * FROM categories");
     }
 }

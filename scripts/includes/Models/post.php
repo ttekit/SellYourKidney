@@ -40,7 +40,14 @@ WHERE slug = ".$slug
              FROM blogposts AS pst WHERE pst.state = 'published'	
 				 ");
     }
+    public function removeOnePost($id){
+        $this->executeQuery("DELETE FROM blogcategories WHERE blogcategories.post_id = ".$id);
+        $this->executeQuery("DELETE FROM posttags WHERE posttags.post_id = ".$id);
+        $this->executeQuery("DELETE FROM comments WHERE post_id=".$id.";");
+        $this->removeRow($id);
+         return true;
 
+    }
     public function getById($id)
     {
         return $this->getOneRow(["id" => $id]);

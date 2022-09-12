@@ -122,7 +122,7 @@ namespace App {
             if (count($data) > 0) {
                 $query = "INSERT INTO " . $this->_bdTable. "(";
                 foreach ($data as $key => $value) {
-                    $query .= $key . ", ";
+                    $query .="`".$key . "`, ";
                 }
                 $query = mb_substr($query, 0, mb_strlen($query) - 2);
                 $query .= ") VALUES (";
@@ -131,6 +131,7 @@ namespace App {
                 }
                 $query = mb_substr($query, 0, mb_strlen($query) - 2);
                 $query .= ");";
+                varDump($query);
                 $sth = $this->_dbh->prepare($query);
                 $sth->execute();
                 return null;
@@ -140,7 +141,7 @@ namespace App {
 
         public function removeRow($id)
         {
-            if (id != null) {
+            if ($id != null) {
                 $query = "DELETE FROM " . $this->_bdTable . " WHERE id=" . $id . ";";
                 $sth = $this->_dbh->prepare($query);
                 $sth->execute();
@@ -152,11 +153,12 @@ namespace App {
         {
             $query = "UPDATE  " . $this->_bdTable . " SET ";
             foreach ($data as $key => $value) {
-                $query .= $key . "='" . $value . "',";
+                $query .="`".$key . "`='" . $value . "',";
             }
             $query = mb_substr($query, 0, mb_strlen($query) - 1);
             $query .= " WHERE id=" . $id . ";";
 
+            echo $query;
             $sth = $this->_dbh->prepare($query);
             $sth->execute();
             return null;

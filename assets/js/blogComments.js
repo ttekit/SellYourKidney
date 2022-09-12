@@ -188,13 +188,13 @@ window.addEventListener("load", function () {
             message: $messageInput.val(),
             messageId: null
         };
-        console.log(userMessage);
 
         $.ajax({
             url: "/ajax/saveComment",
             method: "POST",
             data: userMessage,
             success: (data) => {
+                console.log(data);
                 switch (data) {
                     case "1 row affected": {
                         $(".comments-form").trigger("reset");

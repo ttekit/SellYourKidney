@@ -3,6 +3,7 @@
 namespace App;
 
 use Models\comments;
+use Models\post;
 
 class Ajax extends Controller
 {
@@ -55,14 +56,26 @@ class Ajax extends Controller
             }
         }
     }
-    public function saveOptions(){
-        if(UserAuthorisation::isUserAuthorized()){
-            if(isset($_POST["name"]) && isset($_POST["value"])){
-                $name = $_POST["name"];
-                $value = $_POST["value"];
-                $optionM = new options();
-                $optionM->add($name, $value);
-                echo "SADASD";
+    public function deleteOnePost(){
+        if($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST["postId"])) {
+                $postM = new post();
+                $postM->removeOnePost($_POST["postId"]);
+                echo "POST_REMOVED";
             }
         }
-    }}
+    }
+    public function updatePostStatus(){
+        if($_SERVER["REQUEST_METHOD"] == "POST"){
+            if(isset($_POST["postId"]) && isset($_POST["newStatus"])){
+                $postData = $_POST;
+                $postM = new post();
+                $result = $postM->updateRow($postData["postId"], [
+                    "state" => $postData["newStatus"]
+                ]);
+                echo $result;
+            }
+        }
+
+    }
+}
