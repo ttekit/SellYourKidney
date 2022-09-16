@@ -1085,7 +1085,17 @@ div.form_sub .field input[type="email"], div.form_sub .field input[type="email"]
     background-color: #4CAF50; /* Green */
     color: white;
 }
-
+.adminBlogCont{
+    width: 100%;
+}
+.category-elem{
+    border: 0;
+    border-radius: 4px;
+}
+.tag-elem{
+    border: 0;
+    border-radius: 4px;
+}
 .box{
     display: flex;
     flex-direction: column;
@@ -1097,8 +1107,36 @@ div.form_sub .field input[type="email"], div.form_sub .field input[type="email"]
     flex-direction: column;
     align-items: center;
 }
+.main-content{
+    height: 400px;
+    width: 100%;
+}
+.addNewCategoryBtn{
+    border-radius: 200px;
+    border: 0;
+    margin: 5px;
+}
+.addNewTagBtn{
+    border-radius: 200px;
+    border: 0;
+    margin: 5px;
+}
+.file-input{
+    margin-bottom: 12px;
+}
 .form_sub {
     position: relative;
+}
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+}
+.custom-file-upload input[type="file"] {
+    display: none;
 }
 .blog-container{
     background-color: white;

@@ -70,7 +70,7 @@ namespace App {
 
         public function getOneRow($filter = [])
         {
-            $query = "SELECT * FROM " . $this->_bdTable . $this->_tableName;
+            $query = "SELECT * FROM " . $this->_bdTable;
             if (count($filter) > 0) {
                 $query .= " WHERE ";
                 foreach ($filter as $key => $value) {
@@ -84,13 +84,7 @@ namespace App {
                 $sth = $this->_dbh->prepare($query);
                 $sth->execute();
                 $resultArr = $sth->fetch(PDO::FETCH_ASSOC);
-                $result = "";
-                if (count($resultArr) > 0) {
-                    foreach ($resultArr as $key => $value) {
-                        $result .= $key . " " . $value . " ";
-                    }
-                }
-                return $result;
+                return $resultArr;
             }
             return null;
         }
@@ -107,9 +101,11 @@ namespace App {
                         $query .= "$key = '$value' AND ";
                     }
                 }
+                $query = mb_substr($query, 0, mb_strlen($query) - 4);
             }
 
             $query .= " ORDER BY " . $by . " " . $order . " LIMIT " . $count . " OFFSET " . $offset;
+
             $sth = $this->_dbh->prepare($query);
             $sth->execute();
             $result = $sth->fetchAll(PDO::FETCH_ASSOC);

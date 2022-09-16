@@ -18,7 +18,13 @@ class categories extends \App\DBEngine
         }
         return null;
     }
-
+    public function getCategoryByPostId($id)
+    {
+        $result = $this->executeQuery("SELECT categories.category FROM blogcategories  
+LEFT JOIN categories ON categories.id = blogcategories.category_id 
+WHERE blogcategories.post_id = $id");
+        return $result;
+    }
 
     public function AddCategory($category)
     {

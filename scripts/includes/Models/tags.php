@@ -9,8 +9,11 @@ class tags extends \App\DBEngine
         parent::__construct('tags');
 
     }
-    public function getAllNotEmptyTegs(){
-        return $this->executeQuery("SELECT tags.tag FROM tags WHERE tags.countPosts > 0");
+    public function getByPostId($id){
+        return $this->executeQuery("SELECT tags.tag FROM posttags LEFT JOIN tags ON tags.id = posttags.tag_id WHERE posttags.post_id =$id");
+    }
+    public function getAllNotEmptyTegs($id){
+        return $this->executeQuery("SELECT tags.tag FROM tags WHERE tags.countPosts >".$id);
     }
     public function getIdByTag($tag)
     {

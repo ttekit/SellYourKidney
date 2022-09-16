@@ -14,7 +14,7 @@ class blogcategories extends \App\DBEngine
     {
         $result = $this->getManyRows(["post_id" => $postId]);
         if (count($result) > 0) {
-            return $result[0];
+            return $result;
         }
         return null;
     }

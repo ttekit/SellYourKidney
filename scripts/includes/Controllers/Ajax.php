@@ -2,8 +2,10 @@
 
 namespace App;
 
+use Models\categories;
 use Models\comments;
 use Models\post;
+use Models\tags;
 
 class Ajax extends Controller
 {
@@ -76,6 +78,27 @@ class Ajax extends Controller
                 echo $result;
             }
         }
+    }
 
+    public function getCategory(){
+        if($_SERVER["REQUEST_METHOD"] == "GET"){
+            if(isset($_GET["postId"])){
+                $postData = $_GET;
+                $categories = new categories();
+                $result = $categories->getCategoryByPostId($postData["postId"]);
+                echo json_encode($result, JSON_UNESCAPED_UNICODE);
+            }
+        }
+    }
+    public function getTags(){
+        if($_SERVER["REQUEST_METHOD"] == "GET"){
+            if(isset($_GET["postId"])){
+                $postData = $_GET;
+                $tagsM = new tags();
+
+                $result = $tagsM->getByPostId($postData["postId"]);
+                echo json_encode($result, JSON_UNESCAPED_UNICODE);
+            }
+        }
     }
 }
