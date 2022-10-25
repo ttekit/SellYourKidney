@@ -6,7 +6,7 @@ class Pagination
 {
     public static function printElem($value)
     {
-        echo "<div class='col-sm-6 col-md-4 col-lg-3 blog-container' name='blog-container'> <div class='box'><h6><?= $value->dateOfPublication ?></h6>" .
+        echo "<div class='blog-page-prew col-sm-6 col-md-4 col-lg-3 blog-container' name='blog-container'> <div class='box'><h6><?= $value->dateOfPublication ?></h6>" .
             "<div class='img-box'>" .
             "<img class='blog-img-box' src='/images/" . $value->imgSrc . ".png'" .
             "alt='" . $value->altSrc . "'>" .
@@ -52,7 +52,8 @@ class Pagination
 
     }
 
-    public static function printTagsPanel($data, $href){
+    public static function printTagsPanel($data, $href)
+    {
         if (str_contains($href, "&")) {
             $tmpHref = "";
             $href = explode("&", $href);
@@ -63,9 +64,9 @@ class Pagination
             }
             $href = $tmpHref;
         }
-        for ($i = 0; $i < count($data); $i++){
+        for ($i = 0; $i < count($data); $i++) {
             //<button class='filterBtn'><h6>" . $value->category . ".</h6></button>
-            echo  "<a class='filterBtn' href='".$href."&filter=".$data[$i]->tag."'><h6>" . $data[$i]->tag . ".</h6></a>";
+            echo "<a href='" . $href . "&filter=" . $data[$i]->tag . "'><button class='filterBtn'><h6>" . $data[$i]->tag . ".</h6></button></a>";
         }
     }
 }

@@ -254,7 +254,12 @@
 
 <!-- arrival section -->
 <section class="arrival_section">
-    <img src="images/arrival-bg.png" alt="">
+    <div class="arrival_section-text">
+        <h4 >Смотрите записи всех вдохновляющих сессий GTC</h4>
+        <p>Доступны сотни сессий с недавней конференции GTC, которые помогут расширить ваши возможности и вдохновят на очередные инновации. Посмотрите основной доклад, погрузитесь в технические сессии и узнайте о возможностях, предоставляемых ИИ, в удобное для вас время.</p>
+        <button>Смотреть</button>
+    </div>
+    <img src="/images/arrival-bg.png" alt="">
 </section>
 <!-- end arrival section -->
 
@@ -272,8 +277,8 @@
             $products = $pm->execQuery("SELECT * FROM products");
             foreach ($products as $key => $value) {
                 ?>
-                <div class="col-sm-6 col-md-4 col-lg-3">
-                    <div class="box">
+                <div class=" col-sm-6 col-md-4 col-lg-3">
+                    <div class="product-box box">
                         <div class="option_container">
                             <div class="options">
                                 <a href="" class="option1">

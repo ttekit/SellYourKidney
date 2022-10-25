@@ -12,8 +12,11 @@ class tags extends \App\DBEngine
     public function getByPostId($id){
         return $this->executeQuery("SELECT tags.tag FROM posttags LEFT JOIN tags ON tags.id = posttags.tag_id WHERE posttags.post_id =$id");
     }
-    public function getAllNotEmptyTegs($id){
-        return $this->executeQuery("SELECT tags.tag FROM tags WHERE tags.countPosts >".$id);
+    public function getAllNotEmptyTegs($count){
+        if(!isset($count)){
+            $count = 0;
+        }
+        return $this->executeQuery("SELECT tags.tag FROM tags WHERE tags.countPosts > ".$count);
     }
     public function getIdByTag($tag)
     {

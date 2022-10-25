@@ -25,7 +25,7 @@
         $products = $pm->execQuery("SELECT * FROM products");
         foreach ($products as $key=>$value){
         ?>
-            <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="product-box col-sm-6 col-md-4 col-lg-3">
                 <div class="box">
                     <div class="option_container">
                         <div class="options">

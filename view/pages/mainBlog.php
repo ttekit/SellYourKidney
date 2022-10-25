@@ -15,7 +15,7 @@
                                 <div class="tag-sort-content">
                                     <?php
                                     $filters = new \Models\tags();
-                                    $filtersBtn = $filters->getAllNotEmptyTegs();
+                                    $filtersBtn = $filters->getAllNotEmptyTegs(0);
                                     \App\Pagination::printTagsPanel($filtersBtn, $data["href"]);
                                     ?>
                                 </div>
@@ -294,16 +294,13 @@
         </div>
     </div>
 </section>
-<div filter class="blog-pagination-filter">
-    <div class="dropdown">
-        <ul class="dropdsown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="/blog/?count=3/">3</a></li>
-            <li><a class="dropdown-item" href="/blog/?count=5/">5</a></li>
-            <li><a class="dropdown-item" href="/blog/?count=10">10</a></li>
-            <li><a class="dropdown-item" href="/blog/?count=15">15</a></li>
-        </ul>
-        <ul class="dropdsown-menu" aria-labelledby="dropdownMenuButton1">
-        </ul>
+<div class="blog-pagination-container">
+    <h1>Pagination</h1>
+    <div class="blog-pagination-filter">
+        <a class="dropdown-item" href="/blog/?count=3/">3</a>
+        <a class="dropdown-item" href="/blog/?count=5/">5</a>
+        <a class="dropdown-item" href="/blog/?count=10">10</a>
+        <a class="dropdown-item" href="/blog/?count=15">15</a>
     </div>
 </div>
 <div class="blog">
