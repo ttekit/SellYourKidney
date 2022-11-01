@@ -129,12 +129,13 @@ class User extends Controller
         View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "editUserCabinet" . EXT, $this->data);
     }
 
-    public function saveEditChages()
+    public function saveEditChanges()
     {
+
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (isset($_POST["email"])) {
-                varDump($_POST);
-            }
+            $userDB = new UserAcc();
+            $userDB->updateUserData($_SESSION["reg"]["userId"], $_POST);
+            header('Location: /user');
         } else {
             header('Location: /user');
         }

@@ -27,7 +27,7 @@
                                     <input class="user-edit-input" name="Address" value="<?= $data["userData"]["Address"] ?>"/>
                                 </label></p>
                             <div class="d-flex justify-content-center mb-1">
-                                <a href="/user/Edit"><button type="button" class="btn btn-primary" name="submit" >Save</button></a>
+                               <input type="submit" class="btn btn-primary"/>
                             </div>
                         </div>
                     </div>
