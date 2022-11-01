@@ -5,6 +5,8 @@ $postData = $postM->getById($data["postId"]);
 
 <div class="content-wrapper adminBlogCont">
     <!-- Main content -->
+    <form method="post" action="./updatePost">
+        <input name="id" class="d-none" value="<?=$data["postId"]?>"/>
     <section class="content col-12">
         <div class="row">
             <div class="col-md-12 file-input">
@@ -50,11 +52,11 @@ $postData = $postM->getById($data["postId"]);
                     <div class="card-body">
                         <div class="form-group">
                             <label for="inputName">Title</label>
-                            <input type="text" id="inputName" class="form-control" value="<?=$postData["title"] ?>">
+                            <input type="text" id="inputName" name="title" class="form-control" value="<?=$postData["title"] ?>">
                         </div>
                         <div class="form-group">
                             <label for="inputDescription">Slogan</label>
-                            <textarea id="inputDescription" class="form-control" rows="4"><?= $postData["slogan"]?></textarea>
+                            <textarea id="inputDescription" class="form-control" name="slogan" rows="4"><?= $postData["slogan"]?></textarea>
                         </div>
                         <div class="form-group">
                             <label for="inputClientCompany">Categories</label>
@@ -114,7 +116,7 @@ $postData = $postM->getById($data["postId"]);
                     </div>
                     <div class="card-body">
                         <div class="form-group">
-                            <textarea id="summernote" class="main-content"> <?= $postData["content"] ?></textarea>
+                            <textarea id="summernote" class="main-content" name="content"> <?= $postData["content"] ?></textarea>
                         </div>
                         </div>
                     </div>
@@ -133,6 +135,7 @@ $postData = $postM->getById($data["postId"]);
             </div>
         </div>
     </section>
+    </form>
     <!-- /.content -->
 </div>
 <script src="/assets/js/blogComments.js"></script>

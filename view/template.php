@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- TODO: 1) FULL redesign site-->
 <!-- TODO: 2) cange texts in normal-->
 
 <!-- jQery -->
@@ -73,6 +72,8 @@
                         </ul> </li>
                             <?}
                         } ?>
+
+                        <a href="/user" class="btn-login"><button>Login</button></a>
                     </ul>
                 </ul>
         </div>
@@ -82,7 +83,7 @@
 
 <!-- end header section -->
 <!-- slider section -->
-<section class="slider_section ">
+<section class="slider_section">
     <div class="slider_bg_box">
         <img src="/images/slider-bg.jpg" alt="">
     </div>

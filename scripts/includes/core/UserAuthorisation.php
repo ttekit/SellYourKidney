@@ -11,6 +11,7 @@ class UserAuthorisation
         $_SESSION["reg"]["role"] =  "admin";
         varDump($_SESSION);
     }
+
     public static function isUserAuthorized(){
         if(isset($_SESSION["reg"])){
             return true;

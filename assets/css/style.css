@@ -163,7 +163,17 @@ a:focus {
     font-size: 32px;
     color: #000000;
 }
-
+.btn-login button{
+    background-color: rgb(121, 92, 110);
+    border-radius: 5px;
+    border: 0;
+    color: white;
+    height: 100%;
+    transition-duration: 0.2s;
+}
+.btn-login :hover{
+    background-color: rgb(255, 130, 198);
+}
 .custom_nav-container {
     padding: 0;
 }
