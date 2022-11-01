@@ -10,15 +10,16 @@ class User extends Controller
 {
     public function index()
     {
-
         $this->format_options();
         $this->returnNavigationPanel();
+        $this->format_userData();
         if($this->CheckOnLogin()){
-            header('Location: /user/userCabinet');
+            $this->UserCabinetView();
         }
         else{
-            header('Location: /user/LoginUser');
+            $this->LoginUserView();
         }
+
     }
 
     public function LoginUser()
@@ -41,16 +42,16 @@ class User extends Controller
                     } else {
                         $this->data["success"] = "Thank you very much! Your message is very important to us!";
                         $_SESSION["reg"]["email"] = $email;
-                        $_SESSION["reg"]["user_Id"] = $userAcc["id"];
+                        $_SESSION["reg"]["userId"] = $userAcc["id"];
                         $_SESSION["reg"]["user_Ip"] = $_SERVER["REMOTE_ADDR"];
-                        $_SESSION["reg"]["role"] =  "user";
+                        $_SESSION["reg"]["role"] = "user";
+                        header("Location: /user/");
                     }
                 } else {
                     $this->LoginUserView();
                 }
             }
-        }
-        else{
+        } else {
             header('Location: /user');
         }
     }
@@ -68,30 +69,30 @@ class User extends Controller
                 echo $password;
                 if (!Validator::email($email)) {
                     $this->data["error"]["email"] = "email is incorrect";
-                    if($userDB->getByEmail($email) != null){
+                    if ($userDB->getByEmail($email) != null) {
                         $this->data["error"]["accReg"] = "This email has been registered";
                     }
                 }
                 if (strlen($password) < 8 || strlen($password) > 24) {
                     $this->data["error"]["password"] = "Password must to be from 8 to 24 symbols";
                 }
-                if($passwordConfirm != $password){
+                if ($passwordConfirm != $password) {
                     $this->data["error"]["passwordConfirm"] = "Passwords do not match";
                 }
                 if ($this->data["error"] == null) {
+
                     $userDB = new userAcc();
                     $userDB->AddNewUser([
-                        "login"=>$login,
-                        "email"=>$email,
-                        "password"=>hash('sha256', $password)
+                        "login" => $login,
+                        "email" => $email,
+                        "password" => hash('sha256', $password)
                     ]);
                     $userAcc = $userDB->getByEmail($email);
-
                     $this->data["success"] = "Account has been successfully logged!";
                     $_SESSION["reg"]["email"] = $email;
-                    $_SESSION["reg"]["user_Id"] = $userAcc["id"];
+                    $_SESSION["reg"]["userId"] = $userAcc["id"];
                     $_SESSION["reg"]["user_Ip"] = $_SERVER["REMOTE_ADDR"];
-                    $_SESSION["reg"]["role"] =  "user";
+                    $_SESSION["reg"]["role"] = "user";
                 } else {
                     $this->Register();
                 }
@@ -101,23 +102,66 @@ class User extends Controller
 
     public function LoginUserView()
     {
+        if (!$this->CheckOnLogin()) {
+            $this->format_options();
+            $this->returnNavigationPanel();
+            View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "mainLogin" . EXT, $this->data);
+        } else {
+            $this->UserCabinetView();
+        }
+    }
+
+    public function Edit(){
+        if (!$this->CheckOnLogin()) {
+            $this->format_options();
+            $this->returnNavigationPanel();
+            View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "editUserCabinet" . EXT, $this->data);
+        } else {
+            $this->UserCabinetView();
+        }
+    }
+
+    private function EditCabinetView(){
         $this->format_options();
         $this->returnNavigationPanel();
-        View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "mainLogin" . EXT, $this->data);
+        $this->format_userData();
+        View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "mainUserCabinet" . EXT, $this->data);
+        }
+
+    public function UserCabinetView()
+    {
+        $this->format_options();
+        $this->returnNavigationPanel();
+        $this->format_userData();
+        View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "mainUserCabinet" . EXT, $this->data);
     }
 
     public function Register()
     {
-        $this->format_options();
-        $this->returnNavigationPanel();
-        View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "mainRegister" . EXT, $this->data);
+        if (!$this->CheckOnLogin()) {
+            $this->format_options();
+            $this->returnNavigationPanel();
+            View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "mainRegister" . EXT, $this->data);
+        } else {
+            $this->UserCabinetView();
+        }
+
     }
 
-    public function CheckOnLogin(){
-        if($_SESSION["reg"]["role"] == "user" && $_SESSION["reg"]["id"] != null){
-            return true;
+    private function CheckOnLogin()
+    {
+        if(isset($_SESSION["reg"])){
+            if($_SESSION["reg"]["role"] == "user"){
+                return true;
+            }
         }
         return false;
     }
 
+    private function format_userData(){
+        if($this->CheckOnLogin()){
+            $userDataBase = new userAcc();
+            $this->data["userData"] =$userDataBase->getByEmail($_SESSION["reg"]["email"]);
+        }
+    }
 }
