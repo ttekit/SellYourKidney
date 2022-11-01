@@ -13,10 +13,9 @@ class User extends Controller
         $this->format_options();
         $this->returnNavigationPanel();
         $this->format_userData();
-        if($this->CheckOnLogin()){
+        if ($this->CheckOnLogin()) {
             $this->UserCabinetView();
-        }
-        else{
+        } else {
             $this->LoginUserView();
         }
 
@@ -111,7 +110,8 @@ class User extends Controller
         }
     }
 
-    public function Edit(){
+    public function Edit()
+    {
         if (!$this->CheckOnLogin()) {
             $this->format_options();
             $this->returnNavigationPanel();
@@ -121,12 +121,24 @@ class User extends Controller
         }
     }
 
-    private function EditCabinetView(){
+    private function EditCabinetView()
+    {
         $this->format_options();
         $this->returnNavigationPanel();
         $this->format_userData();
         View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "editUserCabinet" . EXT, $this->data);
+    }
+
+    public function saveEditChages()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST["email"])) {
+                varDump($_POST);
+            }
+        } else {
+            header('Location: /user');
         }
+    }
 
     public function UserCabinetView()
     {
@@ -150,18 +162,19 @@ class User extends Controller
 
     private function CheckOnLogin()
     {
-        if(isset($_SESSION["reg"])){
-            if($_SESSION["reg"]["role"] == "user"){
+        if (isset($_SESSION["reg"])) {
+            if ($_SESSION["reg"]["role"] == "user") {
                 return true;
             }
         }
         return false;
     }
 
-    private function format_userData(){
-        if($this->CheckOnLogin()){
+    private function format_userData()
+    {
+        if ($this->CheckOnLogin()) {
             $userDataBase = new userAcc();
-            $this->data["userData"] =$userDataBase->getByEmail($_SESSION["reg"]["email"]);
+            $this->data["userData"] = $userDataBase->getByEmail($_SESSION["reg"]["email"]);
         }
     }
 }
