@@ -115,9 +115,9 @@ class User extends Controller
         if (!$this->CheckOnLogin()) {
             $this->format_options();
             $this->returnNavigationPanel();
-            View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "editUserCabinet" . EXT, $this->data);
+            View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "mainLogin" . EXT, $this->data);
         } else {
-            $this->UserCabinetView();
+            $this->EditCabinetView();
         }
     }
 
@@ -125,7 +125,7 @@ class User extends Controller
         $this->format_options();
         $this->returnNavigationPanel();
         $this->format_userData();
-        View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "mainUserCabinet" . EXT, $this->data);
+        View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "editUserCabinet" . EXT, $this->data);
         }
 
     public function UserCabinetView()
