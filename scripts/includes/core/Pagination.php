@@ -6,18 +6,18 @@ class Pagination
 {
     public static function printElem($value)
     {
-        echo "<div class='blog-page-prew col-sm-6 col-md-4 col-lg-3 blog-container' name='blog-container'> <div class='box'><h6><?= $value->dateOfPublication ?></h6>" .
+        echo "<div class='blog-page-prew col-sm-6 col-md-4 col-lg-3 blog-container' name='blog-container'> <div class='box'><h6><?= $value[dateOfPublication] ?></h6>" .
             "<div class='img-box'>" .
-            "<img class='blog-img-box' src='/images/" . $value->imgSrc . ".png'" .
-            "alt='" . $value->altSrc . "'>" .
+            "<img class='blog-img-box' src='/images/" . $value["imgSrc"] . ".png'" .
+            "alt='" . $value["altSrc"] . "'>" .
             "</div>" .
             "<button class='blog-read-button'>" .
-            "<a href='/blog/post?slug=" . $value->slug . "'>Go Read</a>" .
+            "<a href='/blog/post?slug=" . $value["slug"] . "'>Go Read</a>" .
             "</button>" .
             " <div class='blog-detail-box'>" .
-            "<h4>" . $value->categoryName . "</h4>" .
-            "<h5>" . $value->title . "</h5>" .
-            "<h6>" . $value->slogan . "</h6>" .
+            "<h4>" . $value["categoryName"] . "</h4>" .
+            "<h5>" . $value["title"] . "</h5>" .
+            "<h6>" . $value["slogan"] . "</h6>" .
             "</div>" .
             "</div>" .
             "</div>";
@@ -66,7 +66,7 @@ class Pagination
         }
         for ($i = 0; $i < count($data); $i++) {
             //<button class='filterBtn'><h6>" . $value->category . ".</h6></button>
-            echo "<a href='" . $href . "&filter=" . $data[$i]->tag . "'><button class='filterBtn'><h6>" . $data[$i]->tag . ".</h6></button></a>";
+            echo "<a href='" . $href . "&filter=" . $data[$i]["tag"] . "'><button class='filterBtn'><h6>" . $data[$i]["tag"] . ".</h6></button></a>";
         }
     }
 }

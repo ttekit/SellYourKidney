@@ -8,23 +8,23 @@
                 <!-- Post header-->
                 <header class="post_header mb-4">
                     <!-- Post title-->
-                    <h1 class="fw-bolder mb-1"><?= $data["pageData"]->title ?></h1>
+                    <h1 class="fw-bolder mb-1"><?= $data["pageData"]["title"] ?></h1>
                     <!-- Post meta content-->
-                    <div class="post_date_of_publication text-muted fst-italic mb-2">Posted on <?= $data["pageData"]->dateOfPublication ?> by
+                    <div class="post_date_of_publication text-muted fst-italic mb-2">Posted on <?= $data["pageData"]["dateOfPublication"] ?> by
                         Start Bootstrap
                     </div>
                     <!-- Post categories-->
                     <div class="hidden post-id"><?= $data["pageData"]->id ?></div>
-                    <div class="post_tags badge bg-secondary text-decoration-none link-light"><?= $data["pageData"]->tags ?></div>
+                    <div class="post_tags badge bg-secondary text-decoration-none link-light"><?= $data["pageData"]["tags"] ?></div>
 
                 </header>
                 <!-- Preview image figure-->
-                <figure class="mb-4"><img class="img-fluid rounded" src="/images/<?= $data["pageData"]->imgSrc ?>.png"
+                <figure class="mb-4"><img class="img-fluid rounded" src="/images/<?= $data["pageData"]["imgSrc"] ?>.png"
                                           alt="..."/></figure>
                 <!-- Post content-->
                 <section class="mb-5">
 
-                    <p class="post_text fs-5 mb-4"><?= $data["pageData"]->content ?></p>
+                    <p class="post_text fs-5 mb-4"><?= $data["pageData"]["content"] ?></p>
                 </section>
             </article>
             <!-- Comments section-->
@@ -66,7 +66,7 @@
             <div class="mb-4">
                 <p style="color: white">Categories</p>
                 <div class="row">
-                    <div class="post_categories badge bg-secondary text-decoration-none link-light"><?= $data["pageData"]->categories ?></div>
+                    <div class="post_categories badge bg-secondary text-decoration-none link-light"><?= $data["pageData"]["categories"] ?></div>
                 </div>
             </div>
         </div>

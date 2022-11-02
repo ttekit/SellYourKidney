@@ -30,7 +30,7 @@
                                     $filters = new \Models\categories();
                                     $filtersBtnC = $filters->getAllNotEmptyCategories();
                                     foreach ($filtersBtnC as $key => $value) {
-                                        echo "<button class='filterBtn'><h6>" . $value->category . ".</h6></button>";
+                                        echo "<button class='filterBtn'><h6>" . $value["category"] . ".</h6></button>";
                                     } ?>
                                 </div>
                             </div>

@@ -10,11 +10,11 @@ class products extends \App\DBEngine
 
     }
 
-    public function getByName($nameOption)
+    public function getById($id)
     {
-        $result = $this->getManyRows(["name" => $nameOption]);
-        if (count($result) > 0) {
-            return $result[0];
+        $result = $this->getOneRow(["id" => $id]);
+        if ($result != null) {
+            return $result;
         }
         return null;
     }
