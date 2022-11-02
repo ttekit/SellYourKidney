@@ -147,12 +147,14 @@ namespace App {
 
         public function updateRow($id, $data = [])
         {
+
             $query = "UPDATE  " . $this->_bdTable . " SET ";
             foreach ($data as $key => $value) {
                 $query .="`".$key . "`='" . $value . "',";
             }
             $query = mb_substr($query, 0, mb_strlen($query) - 1);
             $query .= " WHERE id=" . $id . ";";
+
 
             $sth = $this->_dbh->prepare($query);
             $sth->execute();
@@ -164,7 +166,7 @@ namespace App {
             $sth = $this->_dbh->prepare($query);
             $sth->execute();
             if (strpos($query, "SELECT") !== false) {
-                return $sth->fetchAll(PDO::FETCH_CLASS);
+                return $sth->fetchAll(PDO::FETCH_ASSOC);
             } else {
                 return $sth->rowCount() . " row affected";
             }

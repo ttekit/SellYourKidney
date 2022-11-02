@@ -8,9 +8,9 @@ class userAcc extends \App\DBEngine
     {
         parent::__construct('userAcc');
     }
-    public function getByPostId($postId)
+    public function getById($Id)
     {
-        $result = $this->getManyRows(["post_id" => $postId]);
+        $result = $this->getManyRows(["id" => $Id]);
         if (count($result) > 0) {
             return $result;
         }

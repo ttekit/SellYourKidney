@@ -135,10 +135,8 @@ class User extends Controller
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $userDB = new UserAcc();
             $userDB->updateUserData($_SESSION["reg"]["userId"], $_POST);
-            header('Location: /user');
-        } else {
-            header('Location: /user');
         }
+        header('Location: /user');
     }
 
     public function UserCabinetView()
