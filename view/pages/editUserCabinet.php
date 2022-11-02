@@ -37,10 +37,16 @@
                     <div class="card mb-4 mb-lg-0">
                         <div class="card-body p-0">
                             <ul class="soc-media-group list-group list-group-flush rounded-3">
-                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                    <i class="fas fa-globe fa-lg text-warning"></i>
-                                    <p class="mb-0">https://mdbootstrap.com</p>
-                                </li>
+                                <?php
+                                $data["userData"]["socLinks"] = json_decode($data["userData"]["socLinks"]);
+                                foreach ($data["userData"]["socLinks"] as $key => $value) {
+                                    ?>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                        <a href="<?= $value->href ?>"><p class="mb-0"><?= $value->name ?></p></a>
+                                    </li>
+
+                                <? } ?>
+
                                 <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                                     <input type="button" class="border-0 add-new-soc-button" value="Add new soc"/>
                                 </li>
