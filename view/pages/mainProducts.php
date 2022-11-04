@@ -43,3 +43,4 @@
         </div>
     </div>
 </section>
+<script src="../../assets/js/cartScript.js"></script>

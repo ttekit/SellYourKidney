@@ -146,6 +146,11 @@ class User extends Controller
         $this->format_userData();
         View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "mainUserCabinet" . EXT, $this->data);
     }
+    public function LogOut()
+    {
+        $_SESSION = [];
+        Header("Location: /");
+    }
 
     public function Register()
     {

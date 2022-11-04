@@ -13,7 +13,7 @@ class UserAuthorisation
     }
 
     public static function isUserAuthorized(){
-        if(isset($_SESSION["reg"])){
+        if($_SESSION["reg"]["role"] == "admin"){
             return true;
         }
         return false;

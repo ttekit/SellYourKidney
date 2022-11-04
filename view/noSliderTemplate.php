@@ -54,14 +54,16 @@
                             if (count($navElem["childs"]) == 0) {
                                 ?>
                                 <li class="nav-item">
-                                    <a class="nav-link <?= $navElem["title"]?>" href="<?= $navElem["href"] ?>"><?= $navElem["title"] ?></a>
+                                    <a class="nav-link <?= $navElem["title"] ?>"
+                                       href="<?= $navElem["href"] ?>"><?= $navElem["title"] ?></a>
                                 </li>
                                 <?
                             } else { ?>
                                 <li class="nav-item dropdown"><a href="<?= $navElem['href'] ?>"
                                                                  class="nav-link dropdown-toggle" data-toggle="dropdown"
                                                                  role="button" aria-expanded="true">
-                                        <span class="nav-label"><?= $navElem["title"] ?><span class = "caret"></span></span>
+                                        <span class="nav-label"><?= $navElem["title"] ?><span
+                                                    class="caret"></span></span>
                                     </a>
                                     <ul class="dropdown-menu">
                                         <? foreach ($navElem["childs"] as $key => $child) {
@@ -69,11 +71,13 @@
                                             <li><a href="<?= $child['href'] ?>"><?= $child["title"] ?></a></li>
 
                                         <? } ?>
-                                    </ul> </li>
-                            <?}
+                                    </ul>
+                                </li>
+                            <?
+                            }
                         } ?>
 
-                        <a href="/user" class="btn-login"><button>Login</button></a>
+                        <?php require_once(COMPONENTS_PATH . "navbar.php") ?>
                     </ul>
                 </ul>
         </div>

@@ -24,6 +24,7 @@ const MODELS_PATH = INC_PATH . SEP . "Models" . SEP;
 const CONTROL_PATH = INC_PATH. SEP . "Controllers" . SEP;
 const VIEWS_PATH = ABS_PATH . SEP . "view" . SEP;
 const PAGES_PATH = VIEWS_PATH. "pages" . SEP;
+const COMPONENTS_PATH = VIEWS_PATH. "Components" . SEP;
 const ADM_PAGES_PATH = VIEWS_PATH."adminPages".SEP;
 const ADM_ALL_PAGES_PATH = ADM_PAGES_PATH."pages".SEP;
 function autoLoadCoreClass($name)

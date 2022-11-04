@@ -1,3 +1,5 @@
+<script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&components=buttons"></script>
+
 <div class="product-main-container w-100">
     <div class="product-image">
         <img src="<?= $data["pageData"]["img_src"] ?>"/>
@@ -7,6 +9,7 @@
         <h3 style="margin-top:0px;"><?= $data["pageData"]["price"] ?>$</h3>
 
         <div class="section" style="padding-bottom:20px;">
+<!--            TODO: PayPal in php-->
             <button class="btn btn-success"><span style="margin-right:20px"
                                                   class="glyphicon gl   yphicon-shopping-cart"
                                                   aria-hidden="true"></span> Buy now
@@ -18,4 +21,3 @@
     </div>
 </div>
 
-<script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&components=buttons"></script>

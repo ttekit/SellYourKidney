@@ -69,7 +69,7 @@ $postData = $postM->getById($data["postId"]);
                                 foreach ($catsData as $key => $value)
                                 {
                                     ?>
-                                <button class="category-elem"><?= $value->category ?></button>
+                                <button class="category-elem"><?= $value["category"] ?></button>
                                 <?}
                                 ?>
                                 </div>
@@ -89,7 +89,7 @@ $postData = $postM->getById($data["postId"]);
                                     foreach ($tagsData as $key => $value)
                                     {
                                         ?>
-                                        <button class="tag-elem"><?= $value->tag ?></button>
+                                        <button class="tag-elem"><?= $value["tag"] ?></button>
                                     <?}
                                     ?>
                                 </div>

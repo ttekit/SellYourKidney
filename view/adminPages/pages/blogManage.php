@@ -19,12 +19,12 @@
                             ?>
                             <div class="card-body">
                                 <div class="post">
-                                    <h2><?= $post->title ?></h2>
+                                    <h2><?= $post["title"] ?></h2>
                                     <div class="row">
-                                        <img class='blog-img-box-manage' src="/images/<?= $post->imgSrc ?>.png"
-                                             alt="<?= $post->altSrc ?>">
+                                        <img class='blog-img-box-manage' src="/images/<?= $post["imgSrc"] ?>.png"
+                                             alt="<?= $post["altSrc"] ?>">
                                         <div class="post-manage flex-column">
-                                            <div class="hidden id"><?= $post->id ?></div>
+                                            <div class="hidden id"><?= $post["id"] ?></div>
                                             <button href="#" class="btn btn-info btn-lg blog-edit-button blog-btn">
                                                 <i class="fas fa-info-circle">Edit</i>
                                             </button>
@@ -37,7 +37,7 @@
                                             <select class="form-control">
                                                 <?php
                                                 foreach ($data["status"] as $key => $value) {
-                                                    if (!strcmp($value, $post->state)) {
+                                                    if (!strcmp($value, $post["state"])) {
                                                         echo "<option selected>$value</option>";
                                                     } else {
                                                         echo "<option>$value</option>";
