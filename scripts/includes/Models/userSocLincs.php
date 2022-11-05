@@ -22,4 +22,9 @@ class userSocLincs extends \App\DBEngine
         $result = $this->executeQuery("INSERT INTO usersoclinks(SocLink, SocName, UserId) VALUES('$socLink','$socName',$userId)");
         return $result;
     }
+    public function removeSocLinkById($id)
+    {
+        $result = $this->executeQuery("DELETE FROM usersoclinks WHERE Id =".$id);
+        return $result;
+    }
 }

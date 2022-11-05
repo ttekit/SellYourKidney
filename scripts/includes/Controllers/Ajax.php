@@ -106,6 +106,16 @@ class Ajax extends Controller
             }
         }
     }
+    public function removeSocLinkById()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST["id"])) {
+                $userSocLinkArr = new userSocLincs();
+                $result = $userSocLinkArr->removeSocLinkById($_POST["id"]);
+                echo $result;
+            }
+        }
+    }
 
     public function getCategory()
     {

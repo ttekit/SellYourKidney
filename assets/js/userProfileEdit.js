@@ -3,7 +3,8 @@ window.addEventListener("load", function () {
 
     let $addNewSocButtom = $(".add-new-soc-button");
     let $container = $(".soc-media-group");
-    $addNewSocButtom.on("click", (e) => {
+    let $deleteSocLinkButton = $(".delete-soc-link-button");
+    $addNewSocButtom.on("click", () => {
         $container.append(`
             <li class="inputs-container list-group-item d-flex justify-content-between align-items-center p-3">
                     <input type="text" class="mb-0" placeholder="Name" Name="Name"/>
@@ -35,4 +36,21 @@ window.addEventListener("load", function () {
             });
         })
     })
+    $deleteSocLinkButton.on("click", (e) => {
+        let $parentContainer = $(e.target).parent().parent();
+        $parentContainer.css("color", "red");
+        let idToDelete = $parentContainer.find(".soc-link-id-container").val();
+        $.ajax({
+            type: "POST",
+            url: "/ajax/removeSocLinkById",
+            data: {
+                id: idToDelete
+            },
+            success: function (msg) {
+                if(msg[0] == "1"){
+                    $parentContainer.remove();
+                }
+            }
+        });
+    });
 })
