@@ -32,11 +32,13 @@
                     <div class="card-body p-0">
                         <ul class="list-group list-group-flush rounded-3">
                             <?php
-                            $data["userData"]["socLinks"] = json_decode($data["userData"]["socLinks"]);
-                            foreach ($data["userData"]["socLinks"] as $key => $value) {
+                            $socLinks = new \Models\userSocLincs();
+                            $socLinksArr = $socLinks->getSocLinksOfUser($data["userData"]["id"]);
+                            foreach ($socLinksArr as $key => $value) {
                                 ?>
                                 <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                    <a class="mb-0" href="<?= $value->link ?>"><?= $value->name ?></a>
+                                    <a href="<?= $value["SocLink"] ?>"><p class="mb-0"><?= $value["SocName"] ?></p>
+                                    </a>
                                 </li>
                             <? } ?>
                         </ul>

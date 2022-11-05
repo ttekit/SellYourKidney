@@ -14,19 +14,23 @@ window.addEventListener("load", function () {
         $(".appendSocDataToArray").on("click", (e) => {
             let allInputs = $(".inputs-container input[type=text]");
             let tmp = {}
-
             $.ajax({
                 type: "POST",
-                url: "/ajax/updateSocLinkData",
+                url: "/ajax/addNewSocLinkData",
                 data: {
                     name: allInputs[0].value,
-                    link: allInputs[1].value
+                    link: allInputs[1].value,
+                    userId: $(".id-container").text()
                 },
                 success: function (msg) {
-                    msg = JSON.parse(msg)
-                    $container.append(`<li class="inputs-container list-group-item d-flex justify-content-between align-items-center p-3">
-                                            ${msg[msg.length-1].name}
-                                        </li>`);
+                    msg = JSON.parse(msg);
+                    console.log(msg);
+
+                    $container.append(`
+                         <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                              <a href=${msg.link}><p class="mb-0">${msg.name}</p></a>
+                         </li>
+                    `);
                 }
             });
         })

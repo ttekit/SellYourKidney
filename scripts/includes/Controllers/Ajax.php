@@ -7,6 +7,7 @@ use Models\comments;
 use Models\post;
 use Models\tags;
 use Models\userAcc;
+use Models\userSocLincs;
 
 class Ajax extends Controller
 {
@@ -89,16 +90,19 @@ class Ajax extends Controller
         }
     }
 
-    public function updateSocLinkData()
+    public function addNewSocLinkData()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (isset($_POST["name"]) && isset($_POST["link"])) {
-                $userDataArr = new UserAcc();
-                $accData = $userDataArr->executeQuery("SELECT useracc.socLinks FROM useracc WHERE id=" . $_SESSION["reg"]["userId"]);
-                $accData[0]["socLinks"] = json_decode($accData[0]["socLinks"]);
-                array_push($accData[0]["socLinks"], $_POST);
-                $userDataArr->updateUserData($_SESSION["reg"]["userId"], ["socLinks" => json_encode($accData[0]["socLinks"])]);
-                echo(json_encode($accData[0]["socLinks"]));
+            if (isset($_POST["name"]) && isset($_POST["link"]) && isset($_POST["userId"])) {
+                $userSocLinkArr = new userSocLincs();
+                $result = $userSocLinkArr->addSocLinkToUser($_POST["link"], $_POST["name"], $_POST["userId"]);
+                if ($result[0] == 1) {
+                    echo json_encode([
+                        "name" => $_POST["name"],
+                        "link" => $_POST["link"]
+                    ]);
+                }
+                echo "";
             }
         }
     }
