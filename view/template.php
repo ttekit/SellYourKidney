@@ -242,13 +242,11 @@ $data['options']['lang']?>">
                                 <p>Subscribe by our newsletter and get news.</p>
                             </div>
                             <div class="form_sub">
-                                <form>
+                                <form action="/Contact/addEmailingList" method="post">
                                     <fieldset>
                                         <div class="field">
-                                            <label>
                                                 <input type="email" placeholder="Enter Your Mail" name="email"/>
-                                            </label>
-                                            <!-- TODO: new database for same info(mb use js + php)-->
+                                            <!-- TODO: new database for same info-->
                                             <input type="submit" value="Subscribe"/>
                                         </div>
                                     </fieldset>

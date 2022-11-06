@@ -49,8 +49,7 @@ $data['options']['lang']?>">
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class=""> </span>
                 </button>
-                <ul class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav">
+                <ul class="collapse navbar-collapse navbar-nav" id="navbarSupportedContent">
                         <?php
                         $navigate = $data["navigation"];
                         foreach ($navigate as $key => $navElem) {
@@ -60,7 +59,7 @@ $data['options']['lang']?>">
                                     <a class="nav-link <?= $navElem["title"] ?>"
                                        href="<?= $navElem["href"] ?>"><?= $navElem["title"] ?></a>
                                 </li>
-                                <?
+                                <?php
                             } else { ?>
                                 <li class="nav-item dropdown"><a href="<?= $navElem['href'] ?>"
                                                                  class="nav-link dropdown-toggle" data-toggle="dropdown"
@@ -69,28 +68,25 @@ $data['options']['lang']?>">
                                                     class="caret"></span></span>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <? foreach ($navElem["childs"] as $childsKey => $child) {
+                                        <?php foreach ($navElem["childs"] as $childsKey => $child) {
                                             ?>
                                             <li><a href="<?= $child['href'] ?>"><?= $child["title"] ?></a></li>
 
-                                        <? } ?>
+                                        <?php } ?>
                                     </ul>
                                 </li>
-                            <?
+                                <?php
                             }
                         } ?>
 
                         <?php require_once(COMPONENTS_PATH . "navbar.php") ?>
                     </ul>
-                </ul>
         </div>
-        </nav>
     </header>
 </div>
 
 
 <!-- end header section -->
-</div>
 <main>
     <?php /** @var $contentView */
     require_once $contentView; ?>
@@ -124,10 +120,12 @@ $data['options']['lang']?>">
                                 <p>Subscribe by our newsletter and get update protidin.</p>
                             </div>
                             <div class="form_sub">
-                                <form>
+                                <form action="/Contact/addEmailingList" method="post">
                                     <fieldset>
                                         <div class="field">
-                                            <input type="email" placeholder="Enter Your Mail" name="email"/>
+                                            <label>
+                                                <input type="email" placeholder="Enter Your Mail" name="email"/>
+                                            </label>
                                             <!-- TODO: new database for same info(mb use js + php)-->
                                             <input type="submit" value="Subscribe"/>
                                         </div>
@@ -150,6 +148,5 @@ $data['options']['lang']?>">
 <script src="/assets/js/custom.js"></script>
 <!-- chane color of item on nav panel-->
 <script src="/assets/js/nav-item-color.js"></script>
-</body>
 </body>
 </html>
