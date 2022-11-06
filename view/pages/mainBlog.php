@@ -16,6 +16,7 @@
                                     <?php
                                     $filters = new \Models\tags();
                                     $filtersBtn = $filters->getAllNotEmptyTegs(0);
+                                    /** @var $data */
                                     \App\Pagination::printTagsPanel($filtersBtn, $data["href"]);
                                     ?>
                                 </div>

@@ -12,7 +12,8 @@
                         <?php }
                         }
                         else{?>
-                            <h3><?php echo $data["success"]; ?></h3>
+                            <h3><?php /** @var $data */
+                                echo $data["success"]; ?></h3>
                         <?}?>
                 </div>
             </div>

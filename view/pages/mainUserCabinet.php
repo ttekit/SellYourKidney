@@ -18,7 +18,8 @@
                         <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
                              alt="avatar"
                              class="rounded-circle img-fluid" style="width: 150px;">
-                        <h5 class="my-3"><?= $data["userData"]["login"] ?></h5>
+                        <h5 class="my-3"><?= /** @var $data */
+                            $data["userData"]["login"] ?></h5>
                         <p class="text-muted mb-1"><?= $data["userData"]["Job"] ?></p>
                         <p class="text-muted mb-4"><?= $data["userData"]["Address"] ?></p>
                         <div class="d-flex justify-content-center mb-1">

@@ -19,7 +19,5 @@ class Pages extends Controller
         $this->returnNavigationPanel();
         View::render(VIEWS_PATH."template".EXT, PAGES_PATH."mainTestimonial".EXT, $this->data);
     }
-    public function __construct()
-    {
-    }
+
 }

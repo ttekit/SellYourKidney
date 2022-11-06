@@ -2,7 +2,8 @@
 
 <div class="product-main-container w-100">
     <div class="product-image">
-        <img src="<?= $data["pageData"]["img_src"] ?>"/>
+        <img src="<?= /** @var $data */
+        $data["pageData"]["img_src"] ?>"/>
     </div>
     <div class="product-info" style="border:0px solid gray">
         <h3 class="text-white bold"><?= strtoupper($data["pageData"]["name"]) ?></h3>

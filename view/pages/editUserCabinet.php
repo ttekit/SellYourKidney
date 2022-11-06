@@ -20,7 +20,8 @@
                                  class="rounded-circle img-fluid" style="width: 150px;">
                             <h5 class="my-3"><label class="w-100">
                                     <input class="user-edit-input" name="login"
-                                           value="<?= $data["userData"]["login"] ?>"/>
+                                           value="<?= /** @var $data */
+                                           $data["userData"]["login"] ?>"/>
                                 </label></h5>
                             <p class="text-muted mb-1"><label class="w-100">
                                     <input class="user-edit-input" name="Job" value="<?= $data["userData"]["Job"] ?>"/>

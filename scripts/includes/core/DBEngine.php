@@ -19,8 +19,6 @@ namespace App {
             $table = mb_strtolower($table);
             if (self::IsTableExists($table)) {
                 $this->_bdTable = $table;
-            } else {
-                throw Exception("Incorrect table name");
             }
         }
 
@@ -46,7 +44,7 @@ namespace App {
 
         public function getId($filter = [])
         {
-            $query = "SELECT Id FROM " . $this->_bdTable . $this->_tableName;
+            $query = "SELECT Id FROM " . $this->_bdTable;
             if (count($filter) > 0) {
                 $query .= " WHERE ";
                 foreach ($filter as $key => $value) {

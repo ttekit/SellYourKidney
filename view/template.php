@@ -8,7 +8,8 @@
 <!-- bootstrap js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.min.js"></script>
 
-<html lang="uk">
+<html lang="<?= /** @var $data */
+$data['options']['lang']?>">
 <head>
     <!-- Basic -->
     <meta charset="utf-8"/>
@@ -209,7 +210,8 @@
 <!-- end slider section -->
 
 <main>
-    <?php require_once $contentView; ?>
+    <?php /** @var $contentView */
+    require_once $contentView; ?>
 </main>
 <!-- footer start -->
 <footer>

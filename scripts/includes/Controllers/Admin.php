@@ -220,7 +220,6 @@ class admin extends Controller
     function logOut()
     {
         session_destroy();
-        header:
-        "Location: /main";
+        header:"Location: /main";
     }
 }

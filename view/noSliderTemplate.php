@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <!-- TODO: 2) cange texts in normal-->
 
-<!-- jQery -->
-<script src="/assets/js/jquery-3.4.1.min.js"></script>
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <!-- popper js -->
-<script src="/assets/js/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
 <!-- bootstrap js -->
-<script src="/assets/js/bootstrap.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.min.js"></script
 
 <?php use Models\Navigate; ?>
-<html>
+<html lang="<?= /** @var array $data */
+$data['options']['lang']?>">
 <head>
     <!-- Basic -->
     <meta charset="utf-8"/>
@@ -23,7 +24,8 @@
     <link rel="shortcut icon" href="/images/favicon.png" type="">
     <title>Main | IDKSHOP</title>
     <!-- bootstrap core css -->
-    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css"/>
     <!-- font awesome style -->
     <link href="/assets/css/font-awesome.min.css" rel="stylesheet"/>
     <!-- Custom styles for this template -->
@@ -67,7 +69,7 @@
                                                     class="caret"></span></span>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <? foreach ($navElem["childs"] as $key => $child) {
+                                        <? foreach ($navElem["childs"] as $childsKey => $child) {
                                             ?>
                                             <li><a href="<?= $child['href'] ?>"><?= $child["title"] ?></a></li>
 
@@ -90,7 +92,8 @@
 <!-- end header section -->
 </div>
 <main>
-    <?php require_once $contentView; ?>
+    <?php /** @var $contentView */
+    require_once $contentView; ?>
 </main>
 <!-- footer start -->
 <footer>

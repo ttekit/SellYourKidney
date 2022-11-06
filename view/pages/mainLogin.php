@@ -6,6 +6,7 @@
                     <h3>Login
                     </h3>
                     <?php
+                    /** @var $data */
                     if ($data["error"] != null) {
                         foreach ($data["error"] as $item) {
                             ?>

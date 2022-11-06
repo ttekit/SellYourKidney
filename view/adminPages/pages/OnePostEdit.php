@@ -1,5 +1,6 @@
 <?php
 $postM = new \Models\post();
+/** @var $data */
 $postData = $postM->getById($data["postId"]);
 ?>
 

@@ -49,7 +49,5 @@ class Contact extends Controller
         View::render(VIEWS_PATH . "template" . EXT, PAGES_PATH . "mainError" . EXT, $this->data);
 
     }
-    public function __construct()
-    {
-    }
+
 }
