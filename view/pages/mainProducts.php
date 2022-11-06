@@ -18,7 +18,8 @@
                     <div class="product-box box">
                         <div class="option_container">
                             <div class="options">
-                                <a href="" class="option1 addToCartBtn">
+                                <div class="d-none product-id"><?php echo $value["id"] ?></div>
+                                <a type="button" class="option1 addToCartBtn">
                                     Add to cart
                                 </a>
                                 <a href="/products/product?device=<?php echo $value["id"] ?>" class="option2">

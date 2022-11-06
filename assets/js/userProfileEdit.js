@@ -26,7 +26,7 @@ window.addEventListener("load", function () {
                 success: function (msg) {
                     msg = JSON.parse(msg);
                     console.log(msg);
-
+                    allInputs.val("");
                     $container.append(`
                          <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                               <a href=${msg.link}><p class="mb-0">${msg.name}</p></a>

@@ -5,7 +5,7 @@
             <div class="col-md-12">
                 <div class="full">
                         <?php
-                        if($data["error"] != null){
+                        if(isset($data["error"])){
                         foreach ($data["error"] as $key => $value) {
                             ?>
                             <h3><?php echo $value; ?></h3>

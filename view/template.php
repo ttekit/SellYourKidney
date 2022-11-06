@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<!-- TODO: 2) cange texts in normal-->
+<!-- TODO: 2) change texts in normal-->
 
-<!-- jQery -->
-<script src="/assets/js/jquery-3.4.1.min.js"></script>
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <!-- popper js -->
-<script src="/assets/js/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
 <!-- bootstrap js -->
-<script src="/assets/js/bootstrap.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.min.js"></script>
 
-<?php use Models\Navigate; ?>
-<html>
+<html lang="uk">
 <head>
     <!-- Basic -->
     <meta charset="utf-8"/>
@@ -23,7 +22,8 @@
     <link rel="shortcut icon" href="/images/favicon.png" type="">
     <title>Main | IDKSHOP</title>
     <!-- bootstrap core css -->
-    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css"/>
     <!-- font awesome style -->
     <link href="/assets/css/font-awesome.min.css" rel="stylesheet"/>
     <!-- Custom styles for this template -->
@@ -33,7 +33,10 @@
 </head>
 <body>
 <div class="">
-    <!-- header section strats -->
+    <!--    Preloader-->
+    <div id="preloader" class="visible"></div>
+
+    <!-- header section starts -->
     <header class="header_section">
         <div class="container">
             <nav class="navbar navbar-expand-lg custom_nav-container ">
@@ -46,43 +49,44 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class=""> </span>
                 </button>
-                <ul class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav">
-                        <?php
-                        $navigate = $data["navigation"];
-                        foreach ($navigate as $key => $navElem) {
-                            if (count($navElem["childs"]) == 0) {
-                                ?>
-                                <li class="nav-item">
-                                    <a class="nav-link <?= $navElem["title"] ?>"
-                                       href="<?= $navElem["href"] ?>"><?= $navElem["title"] ?></a>
-                                </li>
-                                <?
-                            } else { ?>
-                                <li class="nav-item dropdown"><a href="<?= $navElem['href'] ?>"
-                                                                 class="nav-link dropdown-toggle" data-toggle="dropdown"
-                                                                 role="button" aria-expanded="true">
+                <ul class="collapse navbar-collapse navbar-nav" id="navbarSupportedContent">
+
+                    <?php
+                    $navigate = $data["navigation"];
+                    foreach ($navigate as $key => $navElem) {
+                        if (count($navElem["childs"]) == 0) {
+                            ?>
+                            <li class="nav-item">
+                                <a class="nav-link <?= $navElem["title"] ?>"
+                                   href="<?= $navElem["href"] ?>"><?= $navElem["title"] ?></a>
+                            </li>
+                            <?php
+                        } else { ?>
+                            <li class="nav-item dropdown"><a href="<?= $navElem['href'] ?>"
+                                                             class="nav-link dropdown-toggle" data-toggle="dropdown"
+                                                             role="button" aria-expanded="true">
                                         <span class="nav-label"><?= $navElem["title"] ?><span
                                                     class="caret"></span></span>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <? foreach ($navElem["childs"] as $key => $child) {
-                                            ?>
-                                            <li><a href="<?= $child['href'] ?>"><?= $child["title"] ?></a></li>
-                                        <? } ?>
-                                    </ul>
-                                </li>
-                            <?
-                            }
-                        } ?>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <?php foreach ($navElem["childs"] as $childKey => $child) {
+                                        ?>
+                                        <li><a href="<?= $child['href'] ?>"><?= $child["title"] ?></a></li>
+                                    <?php } ?>
+                                </ul>
+                            </li>
+                            <?php
+                        }
+                    } ?>
 
-                        <?php require_once(COMPONENTS_PATH . "navbar.php") ?>
-                    </ul>
+                    <?php require_once(COMPONENTS_PATH . "navbar.php") ?>
                 </ul>
+            </nav>
         </div>
-        </nav>
+
+    </header>
 </div>
-</header>
+
 
 <!-- end header section -->
 <!-- slider section -->
@@ -168,7 +172,7 @@
                                     NVIDIA GeForce RTX 3070
                                     </span>
                                     <br>
-                                    one of the prettiest videocards ever
+                                    one of the prettiest video cards ever
                                 </h1>
                                 <p>
                                     Есть много вариантов Lorem Ipsum, но большинство из них имеет не всегда
@@ -203,7 +207,7 @@
     </div>
 </section>
 <!-- end slider section -->
-</div>
+
 <main>
     <?php require_once $contentView; ?>
 </main>
@@ -233,13 +237,15 @@
                         <div class="widget_menu">
                             <h3>Newsletter</h3>
                             <div class="information_f">
-                                <p>Subscribe by our newsletter and get update protidin.</p>
+                                <p>Subscribe by our newsletter and get news.</p>
                             </div>
                             <div class="form_sub">
                                 <form>
                                     <fieldset>
                                         <div class="field">
-                                            <input type="email" placeholder="Enter Your Mail" name="email"/>
+                                            <label>
+                                                <input type="email" placeholder="Enter Your Mail" name="email"/>
+                                            </label>
                                             <!-- TODO: new database for same info(mb use js + php)-->
                                             <input type="submit" value="Subscribe"/>
                                         </div>
@@ -262,6 +268,5 @@
 <script src="/assets/js/custom.js"></script>
 <!-- chane color of item on nav panel-->
 <script src="/assets/js/nav-item-color.js"></script>
-</body>
 </body>
 </html>

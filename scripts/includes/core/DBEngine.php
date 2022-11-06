@@ -61,7 +61,6 @@ namespace App {
             $sth = $this->_dbh->prepare($query);
             $sth->execute();
             $result = $sth->fetch(PDO::FETCH_ASSOC);
-            echo $result;
             if ($result != false) {
                 return intval($result['Id'], 10);
             }
@@ -127,7 +126,6 @@ namespace App {
                 }
                 $query = mb_substr($query, 0, mb_strlen($query) - 2);
                 $query .= ");";
-                varDump($query);
                 $sth = $this->_dbh->prepare($query);
                 $sth->execute();
                 return null;

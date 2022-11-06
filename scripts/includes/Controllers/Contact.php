@@ -30,8 +30,8 @@ class Contact extends Controller
                 if(!Validator::length($subject, 5, 50)){
                     $this->data["error"]["subject"] = "Subject must to be from 5 to 50 symbols";
                 }
-                if(!Validator::length($message, 25, 1200)){
-                    $this->data["error"]["message"] = "Message must to be from 25 to 1200 symbols";
+                if(strlen($message) <= 8){
+                    $this->data["error"]["message"] = "Message must to be more then 25 symbols";
                 }
 
             }
@@ -39,7 +39,7 @@ class Contact extends Controller
         else{
             $this->data["error"] = "Cant send message.";
         }
-        if($this->data["error"] == null){
+        if(!isset($this->data["error"])){
             $cim = new contactInfo();
             $cim->SaveMessage($name, $email, $subject." : ".$message);
             $this->data["success"] = "Thank you very much! Your message is very important to us!";

@@ -32,6 +32,7 @@
     <link href="/assets/css/responsive.css" rel="stylesheet"/>
 </head>
 <body>
+<div id="preloader" class="visible"></div>
 <div class="">
     <!-- header section strats -->
     <header class="header_section">
@@ -82,8 +83,9 @@
                 </ul>
         </div>
         </nav>
+    </header>
 </div>
-</header>
+
 
 <!-- end header section -->
 </div>

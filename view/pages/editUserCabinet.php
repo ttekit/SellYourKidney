@@ -26,7 +26,7 @@
                                     <input class="user-edit-input" name="Job" value="<?= $data["userData"]["Job"] ?>"/>
                                 </label></p>
                             <p class="text-muted mb-4"><label class="w-100">
-                                    <input class="user-edit-input" name="Address"
+                                    <input disabled class="user-edit-input" name="Address"
                                            value="<?= $data["userData"]["Address"] ?>"/>
                                 </label></p>
                             <div class="d-flex justify-content-center mb-1">

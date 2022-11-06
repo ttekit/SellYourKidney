@@ -27,7 +27,7 @@ class Ajax extends Controller
             }
 
         } else {
-            echo "xD nice try";
+            echo "error?";
         }
     }
 
@@ -106,6 +106,7 @@ class Ajax extends Controller
             }
         }
     }
+
     public function removeSocLinkById()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
