@@ -12,3 +12,8 @@ loadData()
         preloaderEl.classList.add('hidden');
         preloaderEl.classList.remove('visible');
     });
+
+
+$(document).ready(function() {
+    $('#preloader').fadeOut(400);
+});

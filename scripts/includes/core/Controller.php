@@ -60,4 +60,12 @@ abstract class Controller
         }
         unset($navModel);
     }
+    public function addProductToCart()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            varDump($this->data["cart"]);
+            array_push($this->data["cart"], $_POST["prodId"]);
+            varDump($this->data["cart"]);
+        }
+    }
 }

@@ -1,5 +1,6 @@
 <!-- end inner page section -->
 <!-- product section -->
+<div class="cart-animation"></div>
 <section class="product_section layout_padding">
     <div class="container">
         <div class="heading_container heading_center">
@@ -18,8 +19,16 @@
                     <div class="product-box box">
                         <div class="option_container">
                             <div class="options">
-                                <div class="d-none product-id"><?php echo $value["id"] ?></div>
-                                <a type="button" class="option1 addToCartBtn">
+                                <div class="d-none product-id">
+                                    <?php echo $value["id"] ?>
+                                </div>
+                                <h5 class="name">
+                                    <?php echo $value["name"] ?>
+                                </h5>
+                                <h6 class="price">
+                                    <?php echo $value["price"] ?>$
+                                </h6>
+                                <a type="button" class="option1 addToCartBtn bubbly-button">
                                     Add to cart
                                 </a>
                                 <a href="/products/product?device=<?php echo $value["id"] ?>" class="option2">
@@ -31,10 +40,10 @@
                             <img src="<?php echo $value["img_src"] ?>" alt="">
                         </div>
                         <div class="detail-box">
-                            <h5>
+                            <h5 class=".name">
                                 <?php echo $value["name"] ?>
                             </h5>
-                            <h6 class="ml-2">
+                            <h6 class="ml-2 .price">
                                 <?php echo $value["price"] ?>$
                             </h6>
                         </div>
@@ -45,3 +54,4 @@
     </div>
 </section>
 <script src="../../assets/js/cartScript.js"></script>
+<script src="../../assets/js/addToCartAnimation.js"></script>
