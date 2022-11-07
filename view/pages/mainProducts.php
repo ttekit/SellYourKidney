@@ -1,6 +1,5 @@
 <!-- end inner page section -->
 <!-- product section -->
-<div class="cart-animation"></div>
 <section class="product_section layout_padding">
     <div class="container">
         <div class="heading_container heading_center">
