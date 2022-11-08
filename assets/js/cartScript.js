@@ -1,4 +1,3 @@
-
 window.addEventListener("load", function () {
     let $addToCartBtn = $(".addToCartBtn");
     let cartArr = [];
@@ -10,7 +9,7 @@ window.addEventListener("load", function () {
         };
         cartArr.push(product);
     })
-    
+
     let $cartButton = $(".cart-button");
     let hasPressed = false;
     let $cartContainer = $(".cart-block");
@@ -18,9 +17,9 @@ window.addEventListener("load", function () {
     $cartButton.on("click", () => {
         let $elemContainer = $cartContainer.find("ul");
         //Changing visibility of cart div
-        let $buyAllButton;
         if (hasPressed === false) {
             let summaryPrise = 0;
+            let $buyAllButton = $(`<button class='buy-all-button'>Buy All: ${summaryPrise}$</button>`);
             $cartContainer.fadeIn(500);
             hasPressed = true;
             for (let i = 0; i < cartArr.length; i++) {
@@ -30,16 +29,21 @@ window.addEventListener("load", function () {
                     <a type="button" class="remove-cart-elem">del</a>
                 </li>`);
                 cartItem.find(".remove-cart-elem").on("click", (e) => {
-                    cartArr.splice(i, 1);
+                    summaryPrise -= parseInt(cartArr[i].price);
+                    $buyAllButton.text("Buy All: "+summaryPrise + '$');
+                    cartArr[i] = null;
                     cartItem.remove();
                 })
                 $elemContainer.append(cartItem);
-                summaryPrise += cartArr[i].price;
+                summaryPrise += parseInt(cartArr[i].price);
             }
-            $buyAllButton = $(`<button class='buy-all-button'>Buy All: ${summaryPrise}$</button>`);
-            $buyAllButton.on("click", (e) => {
-                alert("WIP");
-            })
+            if (summaryPrise != 0) {
+                $buyAllButton.text("Buy All: "+summaryPrise);
+                $buyAllButton.on("click", (e) => {
+                    alert("WIP");
+                })
+                $elemContainer.append($buyAllButton);
+            }
         } else {
             $cartContainer.fadeOut(500);
             hasPressed = false;

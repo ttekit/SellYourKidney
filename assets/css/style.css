@@ -1017,6 +1017,7 @@ footer {
     top: 90px;
     right: 100px;
     padding-top: 6px;
+    padding-right: 30px;
 }
 
 .cart-li {
@@ -1026,7 +1027,11 @@ footer {
     margin-right: 15px;
     border-top: 2px solid gray;
 }
+.buy-all-button{
+    border: 0;
+    width: 100%;
 
+}
 
 /*# sourceMappingURL=style.css.map */
 
