@@ -16,19 +16,20 @@ window.addEventListener("load", function () {
     let $cartContainer = $(".cart-block");
 
     $cartButton.on("click", () => {
-        $elemContainer = $cartContainer.find("ul");
+        let $elemContainer = $cartContainer.find("ul");
         //Changing visibility of cart div
+        let $buyAllButton;
         if (hasPressed === false) {
             let summaryPrise = 0;
             $cartContainer.fadeIn(500);
             hasPressed = true;
-            for(let i = 0; i < cartArr.length; i++){
+            for (let i = 0; i < cartArr.length; i++) {
                 let cartItem = $(`<li class="row cart-li">
                     <p>${cartArr[i].name}</p>
                     <p>${cartArr[i].price}</p>
                     <a type="button" class="remove-cart-elem">del</a>
                 </li>`);
-                cartItem.find(".remove-cart-elem").on("click", (e)=>{
+                cartItem.find(".remove-cart-elem").on("click", (e) => {
                     cartArr.splice(i, 1);
                     cartItem.remove();
                 })
@@ -36,8 +37,8 @@ window.addEventListener("load", function () {
                 summaryPrise += cartArr[i].price;
             }
             $buyAllButton = $(`<button class='buy-all-button'>Buy All: ${summaryPrise}$</button>`);
-            $buyAllButton.on("click", (e)=>{
-                    alert("WIP");
+            $buyAllButton.on("click", (e) => {
+                alert("WIP");
             })
         } else {
             $cartContainer.fadeOut(500);
