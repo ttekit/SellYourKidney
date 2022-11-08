@@ -16,10 +16,11 @@ window.addEventListener("load", function () {
 
     $cartButton.on("click", () => {
         let $elemContainer = $cartContainer.find("ul");
+        let $buyBtnContainer = $(`<div id="paypal-button-container" class="buy-all-button"> </div>`)
+        $elemContainer.append($buyBtnContainer);
         //Changing visibility of cart div
         if (hasPressed === false) {
             let summaryPrise = 0;
-            let $buyAllButton = $(`<button class='buy-all-button'>Buy All: ${summaryPrise}$</button>`);
             $cartContainer.fadeIn(500);
             hasPressed = true;
             for (let i = 0; i < cartArr.length; i++) {
@@ -28,27 +29,35 @@ window.addEventListener("load", function () {
                     <p>${cartArr[i].price}</p>
                     <a type="button" class="remove-cart-elem">del</a>
                 </li>`);
-                cartItem.find(".remove-cart-elem").on("click", (e) => {
+                cartItem.find(".remove-cart-elem").on("click", () => {
                     summaryPrise -= parseInt(cartArr[i].price);
-                    $buyAllButton.text("Buy All: "+summaryPrise + '$');
                     cartArr[i] = null;
                     cartItem.remove();
+                    if(summaryPrise <= 0){
+                        $buyBtnContainer.remove();
+                    }
                 })
                 $elemContainer.append(cartItem);
                 summaryPrise += parseInt(cartArr[i].price);
             }
-            if (summaryPrise != 0) {
-                $buyAllButton.text("Buy All: "+summaryPrise);
-                $buyAllButton.on("click", (e) => {
-                    alert("WIP");
-                })
-                $elemContainer.append($buyAllButton);
+            if (summaryPrise <= 0) {
+                paypal.Buttons({
+                    createOrder: function(data, actions) {
+                        // Set up the transaction
+                        return actions.order.create({
+                            purchase_units: [{
+                                amount: {
+                                    value: summaryPrise
+                                }
+                            }]
+                        });
+                    }
+                }).render('#paypal-button-container');
             }
         } else {
             $cartContainer.fadeOut(500);
             hasPressed = false;
             $elemContainer.empty();
         }
-        //Filling this div
     })
 })

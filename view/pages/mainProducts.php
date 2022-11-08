@@ -1,5 +1,6 @@
 <!-- end inner page section -->
 <!-- product section -->
+
 <section class="product_section layout_padding">
     <div class="container">
         <div class="heading_container heading_center">
@@ -48,9 +49,10 @@
                         </div>
                     </div>
                 </div>
-            <? } ?>
+            <?php } ?>
         </div>
     </div>
 </section>
 <script src="../../assets/js/cartScript.js"></script>
 <script src="../../assets/js/addToCartAnimation.js"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=Ad0ypubZ_l3K1qOGKieJ-H3Ia1oBMGYOl8cL57rrkl3xLa0Nzo-OtKpZquP2SNMiFOwj6Vol0ZIlJJuW&components=buttons"></script>
