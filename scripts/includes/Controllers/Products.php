@@ -8,6 +8,7 @@ class Products extends Controller
     {
         $this->format_options();
         $this->returnNavigationPanel();
+        $this->format_products();
         View::render(VIEWS_PATH . "template" . EXT, PAGES_PATH . "mainProducts" . EXT, $this->data);
     }
 
@@ -29,5 +30,10 @@ class Products extends Controller
         $this->returnNavigationPanel();
     }
 
+    private function format_products(){
+        $pm = new \Models\products();
+        $this->data["products"] = $pm->execQuery("SELECT * FROM products");
+        unset($pm);
+    }
 
 }

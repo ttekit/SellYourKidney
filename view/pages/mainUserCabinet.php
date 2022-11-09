@@ -33,15 +33,13 @@
                     <div class="card-body p-0">
                         <ul class="list-group list-group-flush rounded-3">
                             <?php
-                            $socLinks = new \Models\userSocLincs();
-                            $socLinksArr = $socLinks->getSocLinksOfUser($data["userData"]["id"]);
-                            foreach ($socLinksArr as $key => $value) {
+                            foreach ($data["reg"]["socLinks"] as $key => $value) {
                                 ?>
                                 <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                                     <a href="<?= $value["SocLink"] ?>"><p class="mb-0"><?= $value["SocName"] ?></p>
                                     </a>
                                 </li>
-                            <? } ?>
+                            <?php } ?>
                         </ul>
                     </div>
                 </div>

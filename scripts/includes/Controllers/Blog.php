@@ -28,6 +28,9 @@ class Blog extends Controller
         $this->data["href"] = $_SERVER["REQUEST_URI"];
         $this->format_options();
         $this->returnNavigationPanel();
+        $this->format_posts();
+        $this->format_tags();
+        $this->format_categories();
         View::render(VIEWS_PATH."template".EXT, PAGES_PATH."mainBlog".EXT, $this->data);
     }
 
@@ -46,4 +49,20 @@ class Blog extends Controller
             }
     }
 
+
+    private function format_posts(){
+        $posts = new \Models\post();
+        $this->data["blog"]["posts"] = $posts->getAllPosts();
+        unset($posts);
+    }
+    private function format_tags(){
+        $filters = new \Models\tags();
+        $this->data["posts"]["tags"] = $filters->getAllNotEmptyTegs(0);
+        unset($filters);
+    }
+    private function format_categories(){
+        $filters = new \Models\categories();
+        $this->data["posts"]["categories"] = $filters->getAllNotEmptyCategories();
+        unset($filters);
+    }
 }

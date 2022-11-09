@@ -14,10 +14,9 @@
 
                                 <div class="tag-sort-content">
                                     <?php
-                                    $filters = new \Models\tags();
-                                    $filtersBtn = $filters->getAllNotEmptyTegs(0);
+                                    //TODO: on data
                                     /** @var $data */
-                                    \App\Pagination::printTagsPanel($filtersBtn, $data["href"]);
+                                    \App\Pagination::printTagsPanel($data["posts"]["tags"], $data["href"]);
                                     ?>
                                 </div>
 
@@ -28,9 +27,8 @@
                                 </div>
                                 <div class="categories-sort-content">
                                     <?php
-                                    $filters = new \Models\categories();
-                                    $filtersBtnC = $filters->getAllNotEmptyCategories();
-                                    foreach ($filtersBtnC as $key => $value) {
+                                    //TODO: on data
+                                    foreach ($data["posts"]["categories"] as $key => $value) {
                                         echo "<button class='filterBtn'><h6>" . $value["category"] . ".</h6></button>";
                                     } ?>
                                 </div>
@@ -54,7 +52,7 @@
             <div class="col-md-4">
                 <div class="box ">
                     <div class="img-box">
-                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                        <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                              xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
                              style="enable-background:new 0 0 512 512;" xml:space="preserve">
                            <g>
@@ -155,7 +153,7 @@
             <div class="col-md-4">
                 <div class="box ">
                     <div class="img-box">
-                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                        <svg id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                              xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                              viewBox="0 0 490.667 490.667" style="enable-background:new 0 0 490.667 490.667;"
                              xml:space="preserve">
@@ -308,9 +306,7 @@
     <div class="blog-content">
         <div class="blog-context row">
             <?php
-            $posts = new \Models\post();
-            $postContent = $posts->getAllPosts();
-
+            $postContent = $data["blog"]["posts"];
             if (isset($data["pagination"]["currentPage"])) {
                 $starterPosition = $data["pagination"]["currentPage"];
             } else {
@@ -333,7 +329,6 @@
                 if (isset($postContent[$i])) {
                     \App\Pagination::printElem($postContent[$i]);
                 }
-
             }
             echo "<div class = 'page-count-container'>";
             ?>

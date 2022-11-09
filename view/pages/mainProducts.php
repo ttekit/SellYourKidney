@@ -9,11 +9,9 @@
             </h2>
         </div>
         <div class="row">
-            <?php use Models\products;
-
-            $pm = new products();
-            $products = $pm->execQuery("SELECT * FROM products");
-            foreach ($products as $key => $value) {
+            <?php
+            /** @var $data */
+            foreach ($data["products"] as $key => $value) {
                 ?>
                 <div class=" col-sm-6 col-md-4 col-lg-3">
                     <div class="product-box box">

@@ -45,9 +45,7 @@
                                 </li>
 
                                 <?php
-                                $socLinks = new \Models\userSocLincs();
-                                $socLinksArr = $socLinks->getSocLinksOfUser($data["userData"]["id"]);
-                                foreach ($socLinksArr as $key => $value) {
+                                foreach ($data["reg"]["socLinks"] as $key => $value) {
                                     ?>
                                     <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                                         <input class="soc-link-id-container d-none" value="<?= $value["Id"] ?>"/>
@@ -56,7 +54,8 @@
                                         <a type="button" class="delete-soc-link-button"><p class="mb-0">Delete</p>
                                         </a>
                                     </li>
-                                <? } ?>
+                                    <?php
+                                } ?>
                             </ul>
                         </div>
                     </div>

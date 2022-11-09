@@ -126,6 +126,7 @@ class User extends Controller
         $this->format_options();
         $this->returnNavigationPanel();
         $this->format_userData();
+        $this->formatSocLinkData();
         View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "editUserCabinet" . EXT, $this->data);
     }
 
@@ -144,6 +145,7 @@ class User extends Controller
         $this->format_options();
         $this->returnNavigationPanel();
         $this->format_userData();
+        $this->formatSocLinkData();
         View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "mainUserCabinet" . EXT, $this->data);
     }
     public function LogOut()
@@ -180,5 +182,12 @@ class User extends Controller
             $userDataBase = new userAcc();
             $this->data["userData"] = $userDataBase->getByEmail($_SESSION["reg"]["email"]);
         }
+    }
+
+    private function formatSocLinkData(){
+
+        $socLinks = new \Models\userSocLincs();
+        $socLinksArr = $socLinks->getSocLinksOfUser($_SESSION["reg"]["userId"]);
+        $this->data["reg"]["socLinks"] = $socLinksArr;
     }
 }
