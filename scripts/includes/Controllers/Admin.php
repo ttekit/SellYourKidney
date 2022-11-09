@@ -137,8 +137,6 @@ class admin extends Controller
             if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
                 if (isset($_POST["id"]) && isset($_POST['name']) && isset($_POST['price']) && isset($_POST['content']) && isset($_POST['files'])) {
-
-                    varDump($_POST);
                     $postM = new \Models\products();
                     $postM->updateRow($_POST["id"], [
                         "name" => $_POST['name'],
