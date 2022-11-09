@@ -22,7 +22,7 @@ class products extends \App\DBEngine
     {
         $result = $this->getManyRows();
         if (count($result) > 0) {
-            return $result[0];
+            return $result;
         }
         return null;
     }
@@ -40,5 +40,9 @@ class products extends \App\DBEngine
             'img_src' => $img_src,
             'price' => $price
         ]);
+    }
+
+    public function deleteProduct($id){
+        return $this->removeRow($id);
     }
 }

@@ -30,6 +30,16 @@ class admin extends Controller
             View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "blogManage" . EXT, $this->data);
         }
     }
+    public function productManage()
+    {
+        if (UserAuthorisation::isUserAuthorized()) {
+            $productM = new \Models\products();
+            $this->data["allProd"] = $productM->getAllProducts();
+            unset($productM);
+
+            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "productManage" . EXT, $this->data);
+        }
+    }
 
     public function onePostEdit()
     {

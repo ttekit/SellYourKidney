@@ -142,4 +142,13 @@ class Ajax extends Controller
             }
         }
     }
+    public function deleteOneProduct(){
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST["prodId"])) {
+                $prodM = new \Models\products();
+                $result = $prodM->deleteProduct($_POST["prodId"]);
+                echo json_encode($result, JSON_UNESCAPED_UNICODE);
+            }
+        }
+    }
 }
