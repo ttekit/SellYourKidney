@@ -1,11 +1,11 @@
 window.addEventListener("load", function (){
-    var $btnsContainer = $(".post-manage");
-    var $btnsEdit = $btnsContainer.find(".product-edit-button");
-    var $btnsDelete = $btnsContainer.find(".product-delete-button");
+    let $btnsContainer = $(".post-manage");
+    let $btnsEdit = $btnsContainer.find(".product-edit-button");
+    let $btnsDelete = $btnsContainer.find(".product-delete-button");
 
     $btnsEdit.on("click", function (e){
-        let $postId = $(e.target).closest("div").find(".id").text();
-        window.location = "/admin/OneProductEdit?postId="+$postId;
+        let $prodId = $(e.target).closest("div").find(".id").text();
+        window.location = "/admin/OneProductEdit?prodId="+$prodId;
     })
 
     $btnsDelete.on("click", function (e){

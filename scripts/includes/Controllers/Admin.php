@@ -30,6 +30,16 @@ class admin extends Controller
             View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "blogManage" . EXT, $this->data);
         }
     }
+
+    public function onePostEdit()
+    {
+        if (UserAuthorisation::isUserAuthorized()) {
+            if (isset($_GET["postId"])) {
+                $this->data["postId"] = $_GET["postId"];
+                View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "OnePostEdit" . EXT, $this->data);
+            }
+        }
+    }
     public function productManage()
     {
         if (UserAuthorisation::isUserAuthorized()) {
@@ -41,14 +51,39 @@ class admin extends Controller
         }
     }
 
-    public function onePostEdit()
+    public function OneProductEdit()
     {
         if (UserAuthorisation::isUserAuthorized()) {
-            if (isset($_GET["postId"])) {
-                $this->data["postId"] = $_GET["postId"];
-                View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "OnePostEdit" . EXT, $this->data);
+            if (isset($_GET["prodId"])) {
+                $this->data["prodId"] = $_GET["prodId"];
+                $prodM = new \Models\products();
+                $this->data["prodData"] = $prodM->getById($this->data["prodId"]);
+                View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "OneProdEdit" . EXT, $this->data);
             }
         }
+    }
+
+    public
+    function updatePost()
+    {
+        if (UserAuthorisation::isUserAuthorized()) {
+            if ($_SERVER['REQUEST_METHOD'] == "POST") {
+                if (isset($_POST['title']) && isset($_POST['slogan']) && isset($_POST['content']) && isset($_POST['files'])) {
+                    $postM = new post();
+                    $postM->updateRow($_POST["id"], [
+                        "title" => $_POST['title'],
+                        "slogan" => $_POST['slogan'],
+                        "content" => $_POST['content'],
+                    ]);
+                    if($_POST["files"] != ""){
+                        $postM->updateRow($_POST["id"], [
+                            "imgSrc" => $_POST["files"]
+                        ]);
+                    }
+                }
+            }
+        }
+        header("Location: /admin/blogManage");
     }
 
     public
@@ -57,7 +92,6 @@ class admin extends Controller
         if (UserAuthorisation::isUserAuthorized()) {
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (isset($_POST["name"]) && isset($_POST["value"]) && isset($_POST["group"])) {
-                    varDump($_POST);
                     $newData = $_POST;
                     $optM = new options();
                     $optM->add($newData["name"], $newData["value"], $newData["group"]);
@@ -95,16 +129,20 @@ class admin extends Controller
         }
     }
 
+
     public
-    function updatePost()
+    function updateProd()
     {
         if (UserAuthorisation::isUserAuthorized()) {
             if ($_SERVER['REQUEST_METHOD'] == "POST") {
-                if (isset($_POST['title']) && isset($_POST['slogan']) && isset($_POST['content']) && isset($_POST['files'])) {
-                    $postM = new post();
+
+                if (isset($_POST["id"]) && isset($_POST['name']) && isset($_POST['price']) && isset($_POST['content']) && isset($_POST['files'])) {
+
+                    varDump($_POST);
+                    $postM = new \Models\products();
                     $postM->updateRow($_POST["id"], [
-                        "title" => $_POST['title'],
-                        "slogan" => $_POST['slogan'],
+                        "name" => $_POST['name'],
+                        "price" => $_POST['price'],
                         "content" => $_POST['content'],
                     ]);
                     if($_POST["files"] != ""){
@@ -115,7 +153,7 @@ class admin extends Controller
                 }
             }
         }
-        header("Location: /admin/blogManage");
+        header("Location: /admin/productManage");
     }
 
     public
