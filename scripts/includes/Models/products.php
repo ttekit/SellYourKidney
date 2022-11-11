@@ -42,7 +42,12 @@ class products extends \App\DBEngine
             'price' => $price
         ]);
     }
-
+    public function UpdateImagePathOfPostById($id, $path)
+    {
+        return parent::updateRow($id, [
+            "img_src" => $path
+        ]);
+    }
     public function deleteProduct($id){
         return $this->removeRow($id);
     }

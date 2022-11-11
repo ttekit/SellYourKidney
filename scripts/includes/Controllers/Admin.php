@@ -143,18 +143,15 @@ class admin extends Controller
     {
         if (UserAuthorisation::isUserAuthorized()) {
             if ($_SERVER['REQUEST_METHOD'] == "POST") {
-                if (isset($_POST["id"]) &&isset($_POST['name']) && isset($_POST['price']) && isset($_POST['content']) && isset($_POST['files'])) {
+                varDump($_POST);
+                if (isset($_POST["id"]) &&isset($_POST['name']) && isset($_POST['price']) && isset($_POST['content']) && isset($_POST['file'])) {
                     $postM = new \Models\products();
                     $postM->updateRow($_POST["id"], [
                         "name" => $_POST['name'],
                         "price" => $_POST['price'],
                         "content" => $_POST['content'],
+                        "img_src" => $_POST["file"]
                     ]);
-                    if ($_POST["files"] != "") {
-                        $postM->updateRow($_POST["id"], [
-                            "img_src" => $_POST["files"]
-                        ]);
-                    }
                 }
             }
         }
@@ -169,9 +166,10 @@ class admin extends Controller
                 if ( isset($_POST['name']) && isset($_POST['price']) && isset($_POST['content']) && isset($_POST['files'])) {
                     $postM = new \Models\products();
                     $postM->AddProduct($_POST['name'], $_POST["files"], "/", $_POST["price"], $_POST["content"]);
-                    if ($_POST["files"] != "") {
+                    echo $_FILES['file'];
+                    if ($_FILES['file']!= "") {
                         $postM->updateRow($_POST["id"], [
-                            "img_src" => $_POST["files"]
+                            "img_src" => "/images/products/".$_FILES['file']['name']
                         ]);
                     }
                 }
@@ -196,6 +194,24 @@ class admin extends Controller
                 //UserAuthorisation::isUserAuthorized();
             }
         }
+    }
+
+    public
+    function uploadImage(){
+        $uploaddir = $_SERVER['DOCUMENT_ROOT'].DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR."products".DIRECTORY_SEPARATOR;
+        $uploadfile = $uploaddir . basename($_FILES['file']['name']);
+
+        if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)) {
+            $out = "Файл корректен и был успешно загружен.\n";
+        } else {
+            $out = "Возможная атака с помощью файловой загрузки!\n";
+        }
+
+        $productDataBase = new \Models\products();
+        $productDataBase->UpdateImagePathOfPostById($_POST["productId"], "/images/products/".$_FILES['file']['name']);
+
+
+        varDump($out);
     }
 
     public

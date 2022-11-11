@@ -15,16 +15,13 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <label class="custom-file-upload">
-                                <input type="file" id="inputName" class = "file-input-input form-control" accept="image/png, image/gif, image/jpeg">
-                                Upload new logo
-                            </label>
-                            Upload new logo
-                            <script src="/assets/js/dropZone.js"></script>
+                            <form action="/file-upload"
+                                  class="dropzone"
+                                  id="my-awesome-dropzone"></form>
+                            <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+                            <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
                         </div>
-                        <!-- /.card-body -->
                     </div>
-                    <!-- /.card -->
                 </div>
                 <div class="col-md-6">
                     <div class="card card-primary">
