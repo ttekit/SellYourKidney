@@ -32,12 +32,13 @@ class products extends \App\DBEngine
         return parent::executeQuery($query);
     }
 
-    public function AddProduct($name, $src, $img_src, $price)
+    public function AddProduct($name, $img_src, $img_alt, $price, $content)
     {
         return parent::addRow([
             'name' => $name,
-            'src' => $src,
             'img_src' => $img_src,
+            'img_alt' => $img_alt,
+            'content' => $content,
             'price' => $price
         ]);
     }

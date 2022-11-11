@@ -31,6 +31,13 @@ class admin extends Controller
         }
     }
 
+    public function AddProd()
+    {
+        if (UserAuthorisation::isUserAuthorized()) {
+            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "mainAdminProductAdd" . EXT, $this->data);
+        }
+    }
+
     public function onePostEdit()
     {
         if (UserAuthorisation::isUserAuthorized()) {
@@ -40,6 +47,7 @@ class admin extends Controller
             }
         }
     }
+
     public function productManage()
     {
         if (UserAuthorisation::isUserAuthorized()) {
@@ -75,7 +83,7 @@ class admin extends Controller
                         "slogan" => $_POST['slogan'],
                         "content" => $_POST['content'],
                     ]);
-                    if($_POST["files"] != ""){
+                    if ($_POST["files"] != "") {
                         $postM->updateRow($_POST["id"], [
                             "imgSrc" => $_POST["files"]
                         ]);
@@ -135,17 +143,35 @@ class admin extends Controller
     {
         if (UserAuthorisation::isUserAuthorized()) {
             if ($_SERVER['REQUEST_METHOD'] == "POST") {
-
-                if (isset($_POST["id"]) && isset($_POST['name']) && isset($_POST['price']) && isset($_POST['content']) && isset($_POST['files'])) {
+                if (isset($_POST["id"]) &&isset($_POST['name']) && isset($_POST['price']) && isset($_POST['content']) && isset($_POST['files'])) {
                     $postM = new \Models\products();
                     $postM->updateRow($_POST["id"], [
                         "name" => $_POST['name'],
                         "price" => $_POST['price'],
                         "content" => $_POST['content'],
                     ]);
-                    if($_POST["files"] != ""){
+                    if ($_POST["files"] != "") {
                         $postM->updateRow($_POST["id"], [
-                            "imgSrc" => $_POST["files"]
+                            "img_src" => $_POST["files"]
+                        ]);
+                    }
+                }
+            }
+        }
+        header("Location: /admin/productManage");
+    }
+
+    public
+    function addNewProd()
+    {
+        if (UserAuthorisation::isUserAuthorized()) {
+            if ($_SERVER['REQUEST_METHOD'] == "POST") {
+                if ( isset($_POST['name']) && isset($_POST['price']) && isset($_POST['content']) && isset($_POST['files'])) {
+                    $postM = new \Models\products();
+                    $postM->AddProduct($_POST['name'], $_POST["files"], "/", $_POST["price"], $_POST["content"]);
+                    if ($_POST["files"] != "") {
+                        $postM->updateRow($_POST["id"], [
+                            "img_src" => $_POST["files"]
                         ]);
                     }
                 }
@@ -266,6 +292,7 @@ class admin extends Controller
     function logOut()
     {
         session_destroy();
-        header:"Location: /main";
+        header:
+        "Location: /main";
     }
 }
