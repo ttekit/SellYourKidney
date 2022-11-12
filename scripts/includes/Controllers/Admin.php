@@ -211,7 +211,25 @@ class admin extends Controller
         $productDataBase->UpdateImagePathOfPostById($_POST["productId"], "/images/products/".$_FILES['file']['name']);
 
 
-        varDump($out);
+        echo $out;
+    }
+
+    public
+    function uploadPostImage(){
+        $uploaddir = $_SERVER['DOCUMENT_ROOT'].DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR."blog".DIRECTORY_SEPARATOR;
+        $uploadfile = $uploaddir . basename($_FILES['file']['name']);
+
+        if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)) {
+            $out = "Файл корректен и был успешно загружен.\n";
+        } else {
+            $out = "Возможная атака с помощью файловой загрузки!\n";
+        }
+
+        $productDataBase = new \Models\post();
+        $productDataBase->UpdateImagePathOfProdById($_POST["productId"], "/images/blog/".$_FILES['file']['name']);
+
+
+        echo $out;
     }
 
     public

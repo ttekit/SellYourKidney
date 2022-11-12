@@ -8,7 +8,7 @@ class Pagination
     {
         echo "<div class='blog-page-prew col-sm-6 col-md-4 col-lg-3 blog-container' name='blog-container'> <div class='box'><h6><?= $value[dateOfPublication] ?></h6>" .
             "<div class='img-box'>" .
-            "<img class='blog-img-box' src='/images/" . $value["imgSrc"] . ".png'" .
+            "<img class='blog-img-box' src='" . $value["imgSrc"] ."'".
             "alt='" . $value["altSrc"] . "'>" .
             "</div>" .
             "<button class='blog-read-button'>" .

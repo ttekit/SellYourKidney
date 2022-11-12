@@ -53,6 +53,13 @@ WHERE slug = ".$slug
         return $this->getOneRow(["id" => $id]);
     }
 
+    public function UpdateImagePathOfProdById($id, $path)
+    {
+        return parent::updateRow($id, [
+            "imgSrc" => $path
+        ]);
+    }
+
     public function makeNewPost($slogan, $dateofPublic, $imgSrc, $altSrc, $slug, $content)
     {
         return $this->addRow([

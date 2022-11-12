@@ -20,8 +20,7 @@
 
                 </header>
                 <!-- Preview image figure-->
-                <figure class="mb-4"><img class="img-fluid rounded" src="/images/<?= $data["pageData"]["imgSrc"] ?>.png"
-                                          alt="..."/></figure>
+                <figure class="mb-4"><img class="img-fluid rounded" src="<?= $data["pageData"]["imgSrc"] ?>"/></figure>
                 <!-- Post content-->
                 <section class="mb-5">
 

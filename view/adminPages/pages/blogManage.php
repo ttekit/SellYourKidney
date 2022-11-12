@@ -21,7 +21,7 @@
                                 <div class="post">
                                     <h2><?= $post["title"] ?></h2>
                                     <div class="row">
-                                        <img class='blog-img-box-manage' src="/images/<?= $post["imgSrc"] ?>.png"
+                                        <img class='blog-img-box-manage' src="<?= $post["imgSrc"] ?>"
                                              alt="<?= $post["altSrc"] ?>">
                                         <div class="post-manage flex-column">
                                             <div class="hidden id"><?= $post["id"] ?></div>

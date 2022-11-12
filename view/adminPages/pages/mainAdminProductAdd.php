@@ -3,26 +3,6 @@
     <form method="post" action="/admin/addNewProd">
         <section class="content col-12">
             <div class="row">
-                <div class="col-md-12 file-input">
-                    <div class="card card-primary">
-                        <div class="card-header">
-                            <h3 class="card-title">Logo</h3>
-
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <form action="/file-upload"
-                                  class="dropzone"
-                                  id="my-awesome-dropzone"></form>
-                            <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
-                            <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
-                        </div>
-                    </div>
-                </div>
                 <div class="col-md-6">
                     <div class="card card-primary">
                         <div class="card-header">
