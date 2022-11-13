@@ -23,7 +23,6 @@ class admin extends Controller
     {
         View::render(VIEWS_PATH . "noSliderTemplate" . EXT, ADM_ALL_PAGES_PATH . "mainAdminLogin" . EXT, $this->data);
     }
-
     public function blogManage()
     {
         if (UserAuthorisation::isUserAuthorized()) {
@@ -59,6 +58,8 @@ class admin extends Controller
         }
     }
 
+
+
     public function OneProductEdit()
     {
         if (UserAuthorisation::isUserAuthorized()) {
@@ -68,6 +69,107 @@ class admin extends Controller
                 $this->data["prodData"] = $prodM->getById($this->data["prodId"]);
                 View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "OneProdEdit" . EXT, $this->data);
             }
+        }
+    }
+
+    public
+    function buttons()
+    {
+        if (UserAuthorisation::isUserAuthorized()) {
+            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "buttons" . EXT, $this->data);
+        } else {
+            $this->Login();
+        }
+    }
+
+    public
+    function cards()
+    {
+        if (UserAuthorisation::isUserAuthorized()) {
+            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "cards" . EXT, $this->data);
+        } else {
+            $this->Login();
+        }
+    }
+
+    public
+    function colors()
+    {
+        if (UserAuthorisation::isUserAuthorized()) {
+            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "colors" . EXT, $this->data);
+        } else {
+            $this->Login();
+        }
+    }
+
+    public
+    function borders()
+    {
+        if (UserAuthorisation::isUserAuthorized()) {
+            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "borders" . EXT, $this->data);
+        } else {
+            $this->Login();
+        }
+    }
+
+    public
+    function animations()
+    {
+        if (UserAuthorisation::isUserAuthorized()) {
+            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "animations" . EXT, $this->data);
+        } else {
+            $this->Login();
+        }
+    }
+
+    public
+    function other()
+    {
+        if (UserAuthorisation::isUserAuthorized()) {
+            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "other" . EXT, $this->data);
+        } else {
+            $this->Login();
+        }
+    }
+
+    public
+    function forgotPassword()
+    {
+        if (UserAuthorisation::isUserAuthorized()) {
+            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "forgotPassword" . EXT, $this->data);
+        } else {
+            $this->Login();
+        }
+    }
+
+    public
+    function charts()
+    {
+        if (UserAuthorisation::isUserAuthorized()) {
+            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "charts" . EXT, $this->data);
+        } else {
+            $this->Login();
+        }
+    }
+
+    public
+    function tables()
+    {
+        if (UserAuthorisation::isUserAuthorized()) {
+            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "tables" . EXT, $this->data);
+        } else {
+            $this->Login();
+        }
+    }
+
+
+    public
+    function userManage()
+    {
+        if (UserAuthorisation::isUserAuthorized()) {
+            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "userManage" . EXT, $this->data);
+        } else {
+            $this->Login();
         }
     }
 
@@ -232,95 +334,7 @@ class admin extends Controller
         echo $out;
     }
 
-    public
-    function buttons()
-    {
-        if (UserAuthorisation::isUserAuthorized()) {
-            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "buttons" . EXT, $this->data);
-        } else {
-            $this->Login();
-        }
-    }
 
-    public
-    function cards()
-    {
-        if (UserAuthorisation::isUserAuthorized()) {
-            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "cards" . EXT, $this->data);
-        } else {
-            $this->Login();
-        }
-    }
-
-    public
-    function colors()
-    {
-        if (UserAuthorisation::isUserAuthorized()) {
-            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "colors" . EXT, $this->data);
-        } else {
-            $this->Login();
-        }
-    }
-
-    public
-    function borders()
-    {
-        if (UserAuthorisation::isUserAuthorized()) {
-            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "borders" . EXT, $this->data);
-        } else {
-            $this->Login();
-        }
-    }
-
-    public
-    function animations()
-    {
-        if (UserAuthorisation::isUserAuthorized()) {
-            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "animations" . EXT, $this->data);
-        } else {
-            $this->Login();
-        }
-    }
-
-    public
-    function other()
-    {
-        if (UserAuthorisation::isUserAuthorized()) {
-            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "other" . EXT, $this->data);
-        } else {
-            $this->Login();
-        }
-    }
-
-    public
-    function forgotPassword()
-    {
-        if (UserAuthorisation::isUserAuthorized()) {
-            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "forgotPassword" . EXT, $this->data);
-        } else {
-            $this->Login();
-        }
-    }
-
-    public
-    function charts()
-    {
-        if (UserAuthorisation::isUserAuthorized()) {
-            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "charts" . EXT, $this->data);
-        } else {
-            $this->Login();
-        }
-    }
-
-    public
-    function tables()
-    {
-        if (UserAuthorisation::isUserAuthorized()) {
-            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "tables" . EXT, $this->data);
-        } else {
-            $this->Login();
-        }
-    }
 
     public
     function logOut()
