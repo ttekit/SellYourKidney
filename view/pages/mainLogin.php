@@ -37,9 +37,9 @@
                                 <p class="text-white-50 mb-5">Please enter your login and password!</p>
 
                                 <div class="form-outline form-white mb-4">
-                                    <input type="email" id="typeEmailX" name="email"
+                                    <input type="text" id="typeEmailX" name="login"
                                            class="form-control form-control-lg"/>
-                                    <label class="form-label" for="typeEmailX">Email</label>
+                                    <label class="form-label" for="typeEmailX">Login</label>
                                 </div>
 
                                 <div class="form-outline form-white mb-4">

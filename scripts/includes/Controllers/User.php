@@ -24,23 +24,19 @@ class User extends Controller
     public function LoginUser()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (isset($_POST["email"]) && isset($_POST["password"])) {
+            if (isset($_POST["login"]) && isset($_POST["password"])) {
                 $this->data["error"] = null;
-                $email = htmlspecialchars(trim($_POST["email"]));
-
-                if (!Validator::email($email)) {
-                    $this->data["error"]["email"] = "email wrote incorrect";
-                }
+                $login = htmlspecialchars(trim($_POST["login"]));
 
                 if ($this->data["error"] == null) {
                     $userDB = new userAcc();
-                    $userAcc = $userDB->getByEmail($email);
+                    $userAcc = $userDB->getByLogin($login);
                     if ($userAcc == null) {
                         $this->data["error"]["user"] = "Incorrect data";
                         $this->LoginUserView();
                     } else {
                         $this->data["success"] = "Thank you very much! Your message is very important to us!";
-                        $_SESSION["reg"]["email"] = $email;
+                        $_SESSION["reg"]["login"] = $login;
                         $_SESSION["reg"]["userId"] = $userAcc["id"];
                         $_SESSION["reg"]["user_Ip"] = $_SERVER["REMOTE_ADDR"];
                         $_SESSION["reg"]["role"] = "user";
@@ -65,7 +61,6 @@ class User extends Controller
                 $password = htmlspecialchars(trim($_POST["password"]));
                 $passwordConfirm = htmlspecialchars(trim($_POST["passwordConfirm"]));
                 $userDB = new userAcc();
-                echo $password;
                 if (!Validator::email($email)) {
                     $this->data["error"]["email"] = "email is incorrect";
                     if ($userDB->getByEmail($email) != null) {
@@ -92,6 +87,7 @@ class User extends Controller
                     $_SESSION["reg"]["userId"] = $userAcc["id"];
                     $_SESSION["reg"]["user_Ip"] = $_SERVER["REMOTE_ADDR"];
                     $_SESSION["reg"]["role"] = "user";
+                    header('Location: /user');
                 } else {
                     $this->Register();
                 }
@@ -180,7 +176,7 @@ class User extends Controller
     {
         if ($this->CheckOnLogin()) {
             $userDataBase = new userAcc();
-            $this->data["userData"] = $userDataBase->getByEmail($_SESSION["reg"]["email"]);
+            $this->data["userData"] = $userDataBase->getByLogin($_SESSION["reg"]["login"]);
         }
     }
 

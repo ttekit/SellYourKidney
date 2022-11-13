@@ -24,6 +24,14 @@ class userAcc extends \App\DBEngine
         }
         return null;
     }
+    public function getByLogin($login)
+    {
+        $result = $this->getOneRow(["login" => $login]);
+        if (count($result) > 0) {
+            return $result;
+        }
+        return null;
+    }
     public function AddNewUser($data)
     {
         return parent::addRow($data);
