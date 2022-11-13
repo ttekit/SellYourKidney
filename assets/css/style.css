@@ -1601,3 +1601,8 @@ form input[type="submit"]:focus {
     overflow: visible;
     background: #9f6464;
 }
+
+*::selection {
+    color: #fff;
+    background-color: #000;
+}
