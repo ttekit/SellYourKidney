@@ -1212,6 +1212,17 @@ div.form_sub .field input[type="email"], div.form_sub .field input[type="email"]
 .adminBlogCont {
     width: 100%;
 }
+.ban-user{
+    border: 2px solid red;
+    border-radius: 5px;
+    margin-top: 2px;
+    background-color: #ff3d3d;
+    color: #000000;
+    transition-duration: 0.2s;
+}
+.ban-user:hover{
+        width: calc(120%);
+}
 
 .category-elem {
     border: 0;
@@ -1600,6 +1611,9 @@ form input[type="submit"]:focus {
     height: 100%;
     overflow: visible;
     background: #9f6464;
+    background-image: url("/images/loader.gif");
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 *::selection {

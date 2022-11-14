@@ -1,6 +1,6 @@
 window.addEventListener("load", function () {
     "use strict"
-    var postId = parseInt($(".post-id").text());
+    var postId = parseInt($("#post-id").text());
     var getAnswerFrom = function ($parent, oldData) {
         console.log(oldData.id);
         let $data;
@@ -45,21 +45,11 @@ window.addEventListener("load", function () {
                 url: "/ajax/saveComment",
                 method: "POST",
                 data: userMessage,
-                success: (data) => {
-                    console.log(data);
-                    switch (data) {
-                        case "1 row affected": {
-                            $(".comments-form").trigger("reset");
-                            alert("Comment is successfully send to moderation validation");
-                            break;
-                        }
-                        case "0 row affected": {
-                            alert("Some data in comment is unavailable, refill form");
-                            //показать вспл окно с неуспехом операции и дальнешей попыткой разобраться
-                            break;
-                        }
-                    }
-                    ;
+                beforeSend: function() {
+                    $('#preloader').fadeIn(500);
+                },
+                complete: function() {
+                    location.reload();
                 },
                 error: (msg) => {
                     alert(msg);

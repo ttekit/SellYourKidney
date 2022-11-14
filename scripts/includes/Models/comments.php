@@ -32,6 +32,7 @@ class comments extends \App\DBEngine
         if($commentId == null){
             $commentId="null";
         }
+
         return parent::executeQuery("INSERT INTO comments(post_id, login, email, `comment`, comment_id) VALUES($postId,'$login','$email','$comment', $commentId)");
     }
     public function getSubCommentsBParentId($parentId){

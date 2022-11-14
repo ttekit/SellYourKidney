@@ -15,7 +15,7 @@
                         Start Bootstrap
                     </div>
                     <!-- Post categories-->
-                    <div class="hidden post-id"><?= $data["pageData"]->id ?></div>
+                    <div class="hidden" id="post-id"><?= $data["pageData"]["id"] ?></div>
                     <div class="post_tags badge bg-secondary text-decoration-none link-light"><?= $data["pageData"]["tags"] ?></div>
 
                 </header>
@@ -36,7 +36,7 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-4 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <input name="login" type="name" class="form-control" placeholder="Enter your name ..."/>
+                                        <input name="login" type="text" class="form-control" placeholder="Enter your name ..."/>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-4 col-sm-12 col-xs-12">
