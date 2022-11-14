@@ -32,7 +32,13 @@ window.addEventListener("load", function () {
                               <a href=${msg.link}><p class="mb-0">${msg.name}</p></a>
                          </li>
                     `);
-                }
+                },
+                beforeSend: function() {
+                    $('#preloader').fadeIn(500);
+                },
+                complete: function() {
+                    $('#preloader').fadeOut(500);
+                },
             });
         })
     })
@@ -50,7 +56,13 @@ window.addEventListener("load", function () {
                 if(msg[0] == "1"){
                     $parentContainer.remove();
                 }
-            }
+            },
+            beforeSend: function() {
+                $('#preloader').fadeIn(500);
+            },
+            complete: function() {
+                $('#preloader').fadeOut(500);
+            },
         });
     });
 })

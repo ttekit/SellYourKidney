@@ -17,6 +17,12 @@ window.addEventListener("load", function (){
             data: {
                 "prodId": $prodId
             },
+            beforeSend: function() {
+                $('#preloader').fadeIn(500);
+            },
+            complete: function() {
+                $('#preloader').fadeOut(500);
+            },
             success: (data) => {
                 console.log(data);
                 $container.parent("div").parent("div").remove();

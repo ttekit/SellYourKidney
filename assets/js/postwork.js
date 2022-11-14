@@ -44,6 +44,12 @@ window.addEventListener("load", function (){
                 console.log(data);
 
             },
+            beforeSend: function() {
+                $('#preloader').fadeIn(500);
+            },
+            complete: function() {
+                $('#preloader').fadeOut(500);
+            },
             error: (msg) => {
                 alert(msg);
             }

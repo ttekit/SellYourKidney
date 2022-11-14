@@ -17,7 +17,13 @@ window.addEventListener("load", function () {
             },
             error: (msg) => {
                 alert(msg);
-            }
+            },
+            beforeSend: function() {
+                $('#preloader').fadeIn(500);
+            },
+            complete: function() {
+                $('#preloader').fadeOut(500);
+            },
         })
     })
 

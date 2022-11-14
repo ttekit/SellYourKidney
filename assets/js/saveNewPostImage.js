@@ -31,7 +31,13 @@ window.addEventListener("load", () => {
                 },
                 error: function (err, errmsg) {
                     console.log("error: " + errmsg);
-                }
+                },
+                beforeSend: function() {
+                    $('#preloader').fadeIn(500);
+                },
+                complete: function() {
+                    $('#preloader').fadeOut(500);
+                },
             });
 
             return false;

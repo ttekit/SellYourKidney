@@ -76,6 +76,12 @@ window.addEventListener("load", function () {
         data: {
             "postId": $postId
         },
+        beforeSend: function() {
+            $('#preloader').fadeIn(500);
+        },
+        complete: function() {
+            $('#preloader').fadeOut(500);
+        },
         success: (data) => {
             globalData.category = [];
             let tmp = JSON.parse(data);
@@ -102,6 +108,12 @@ window.addEventListener("load", function () {
                 globalData.tag.push(tmp[i].tag);
             }
             $tagBlock.removeClass("hidden");
+        },
+        beforeSend: function() {
+            $('#preloader').fadeIn(500);
+        },
+        complete: function() {
+            $('#preloader').fadeOut(500);
         },
         error: (msg) => {
             alert(msg);
