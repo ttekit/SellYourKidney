@@ -185,11 +185,6 @@ class admin extends Controller
                         "slogan" => $_POST['slogan'],
                         "content" => $_POST['content'],
                     ]);
-                    if ($_POST["files"] != "") {
-                        $postM->updateRow($_POST["id"], [
-                            "imgSrc" => $_POST["files"]
-                        ]);
-                    }
                 }
             }
         }

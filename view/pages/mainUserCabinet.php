@@ -42,7 +42,9 @@
                             <?php } ?>
                         </ul>
                     </div>
+                 <a class="w-100 btn btn-secondary " href="/user/writePost">Write post</a>
                 </div>
+
             </div>
             <div class="col-lg-8">
                 <div class="card mb-4">
@@ -167,3 +169,4 @@
         </div>
     </div>
 </section>
+<script src="/assets/js/addPost.js"></script>

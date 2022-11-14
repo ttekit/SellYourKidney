@@ -2,7 +2,9 @@
 
 namespace App;
 
+use DateTime;
 use http\Header;
+use Models\post;
 use Models\tags;
 use Models\userAcc;
 
@@ -144,6 +146,7 @@ class User extends Controller
         $this->formatSocLinkData();
         View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "mainUserCabinet" . EXT, $this->data);
     }
+
     public function LogOut()
     {
         $_SESSION = [];
@@ -160,6 +163,50 @@ class User extends Controller
             $this->UserCabinetView();
         }
 
+    }
+
+    public function writePost()
+    {
+        if (!$this->CheckOnLogin()) {
+            $this->format_options();
+            $this->returnNavigationPanel();
+            View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "mainRegister" . EXT, $this->data);
+        } else {
+            $this->AddPostView();
+        }
+    }
+
+    public function addNewPost()
+    {
+        if ($this->CheckOnLogin()) {
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                if (isset($_POST["title"]) && isset($_POST["slogan"]) && isset($_POST["content"])) {
+                    $uploaddir = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . "products" . DIRECTORY_SEPARATOR;
+                    $uploadfile = $uploaddir . basename($_FILES['logo']['name']);
+                    if (move_uploaded_file($_FILES['logo']['tmp_name'], $uploadfile)) {
+                        $out = "Файл корректен и был успешно загружен.\n";
+                    } else {
+                        $out = "Возможная атака с помощью файловой загрузки!\n";
+                    }
+                    $blogM = new \Models\post();
+                    $dateTime = new DateTime();
+                    $blogM->addRow([
+                        "title" => $_POST["title"],
+                        "slogan" => $_POST["slogan"],
+                        "content" => $_POST["content"],
+                        "dateOfPublication" => $dateTime->format('Y\-m\-d\ h:i:s'),
+                        "imgSrc" => "/images/products/" . $_FILES['logo']['name'],
+                        "altSrc" => "",
+                        "state" => "created",
+                        "author" => $_SESSION["reg"]["userId"]
+                    ]);
+                }
+            }
+        } else {
+            $this->format_options();
+            $this->returnNavigationPanel();
+            View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "mainRegister" . EXT, $this->data);
+        }
     }
 
     private function CheckOnLogin()
@@ -180,10 +227,16 @@ class User extends Controller
         }
     }
 
-    private function formatSocLinkData(){
+    private function formatSocLinkData()
+    {
 
         $socLinks = new \Models\userSocLincs();
         $socLinksArr = $socLinks->getSocLinksOfUser($_SESSION["reg"]["userId"]);
         $this->data["reg"]["socLinks"] = $socLinksArr;
+    }
+
+    private function AddPostView()
+    {
+        View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "addUserPost" . EXT, $this->data);
     }
 }

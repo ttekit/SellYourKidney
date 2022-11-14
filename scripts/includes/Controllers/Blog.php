@@ -35,11 +35,11 @@ class Blog extends Controller
     }
 
     public function post(){
-            if(isset($_GET["slug"])){
+            if(isset($_GET["id"])){
                 $this->data["error"] = null;
-                $slug = $_GET["slug"];
+                $id = $_GET["id"];
                 $postM = new post();
-                $onePost = $postM->getBySlug($slug);
+                $onePost = $postM->getPostById($id);
                 if(!is_null($onePost)) {
                     $this->data["pageData"] = $onePost;
                     $this->format_options();

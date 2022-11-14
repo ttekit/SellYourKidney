@@ -12,7 +12,7 @@ class Pagination
             "alt='" . $value["altSrc"] . "'>" .
             "</div>" .
             "<button class='blog-read-button'>" .
-            "<a href='/blog/post?slug=" . $value["slug"] . "'>Go Read</a>" .
+            "<a href='/blog/post?id=" . $value["Id"] . "'>Go Read</a>" .
             "</button>" .
             " <div class='blog-detail-box'>" .
             "<h4>" . $value["categoryName"] . "</h4>" .
