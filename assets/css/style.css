@@ -1620,3 +1620,7 @@ form input[type="submit"]:focus {
     color: #fff;
     background-color: #000;
 }
+
+.summary-prise{
+    text-align: center;
+}

@@ -3,6 +3,7 @@
     <ul>
 
     </ul>
+    <div class="summary-prise"></div>
 </div>
 <?php if (!isset($_SESSION["reg"])) {
     ?>
