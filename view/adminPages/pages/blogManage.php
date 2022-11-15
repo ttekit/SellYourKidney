@@ -4,7 +4,6 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 pt-3">
-
                     <div class="card card-blue ">
                         <div class="card-header">
                             <h3 class="card-title">Управление постами в блоге</h3>

@@ -12,11 +12,4 @@ window.addEventListener("load", function () {
             pressed = false;
         }
     })
-    let editBtns = document.getElementsByClassName(".editBtn");
-
-    for(let i = 0; i < editBtns.length; i++){
-        editBtns[i].addEventListener("click", function (){
-            
-        })
-    }
 })

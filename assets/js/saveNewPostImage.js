@@ -27,7 +27,9 @@ window.addEventListener("load", () => {
 
                 success: function (data) {
                     // do smth.
-                    alert(data);
+                    swal("Comment is successfully send", {
+                        icon: "success",
+                    })
                 },
                 error: function (err, errmsg) {
                     console.log("error: " + errmsg);

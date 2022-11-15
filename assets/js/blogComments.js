@@ -188,12 +188,15 @@ window.addEventListener("load", function () {
                 switch (data) {
                     case "1 row affected": {
                         $(".comments-form").trigger("reset");
-                        alert("Comment is successfully send to moderation validation");
+                        swal("Comment is successfully send", {
+                            icon: "success",
+                        })
                         break;
                     }
                     case "0 row affected": {
-                        alert("Some data in comment is unavailable, refill form");
-                        //показать вспл окно с неуспехом операции и дальнешей попыткой разобраться
+                        swal("Some data in comment is unavailable, refill form", {
+                            icon: "error",
+                        })
                         break;
                     }
                 }

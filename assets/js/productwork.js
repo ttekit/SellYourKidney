@@ -24,7 +24,6 @@ window.addEventListener("load", function (){
                 $('#preloader').fadeOut(500);
             },
             success: (data) => {
-                console.log(data);
                 $container.parent("div").parent("div").remove();
             },
             error: (msg) => {
