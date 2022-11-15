@@ -1,5 +1,5 @@
 window.addEventListener("load", () => {
-    var files;
+    let files;
 
     $('input[type=file]').on('change', prepareUpload);
 
@@ -16,7 +16,9 @@ window.addEventListener("load", () => {
             let postForm = $(".addNewPost");
             let formData = new FormData();
 
-            formData.append('logo', files[0]);
+            if(files != null){
+                formData.append('logo', files[0]);
+            }
 
             formData.append('title', $("[name='title']").val());
             formData.append('slogan', $("[name='slogan']").val());
@@ -30,13 +32,33 @@ window.addEventListener("load", () => {
                 cache: false,
                 processData: false,
                 contentType: false,
-
                 success: function (data) {
-                    // do smth.
-                    alert(data);
+                    console.log(data);
+                    swal({
+                        title: "Are you sure?",
+                        text: "Are you sure you want to share"+data,
+                        icon: "success",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                        .then((willDelete) => {
+                            if (willDelete) {
+                                swal("Poof! Your post is on checking!", {
+                                    icon: "success",
+                                }).then((willDelete) => {
+                                    location.href = "/Blog/";
+                                });
+                            } else {
+                                swal("Why are you so close?");
+                            }
+                        });
                 },
                 error: function (err, errmsg) {
-                    console.log("error: " + errmsg);
+                    swal({
+                        title: "Error",
+                        text: "Try later pls: " + errmsg,
+                        icon: "error"
+                    })
                 },
                 beforeSend: function() {
                     $('#preloader').fadeIn(500);

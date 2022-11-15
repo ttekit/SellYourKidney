@@ -181,12 +181,18 @@ class User extends Controller
         if ($this->CheckOnLogin()) {
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (isset($_POST["title"]) && isset($_POST["slogan"]) && isset($_POST["content"])) {
-                    $uploaddir = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . "products" . DIRECTORY_SEPARATOR;
-                    $uploadfile = $uploaddir . basename($_FILES['logo']['name']);
-                    if (move_uploaded_file($_FILES['logo']['tmp_name'], $uploadfile)) {
-                        $out = "Файл корректен и был успешно загружен.\n";
-                    } else {
-                        $out = "Возможная атака с помощью файловой загрузки!\n";
+
+                    if(isset($_FILES['logo'])){
+                        $uploaddir = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . "products" . DIRECTORY_SEPARATOR;
+                        $uploadfile = $uploaddir . basename($_FILES['logo']['name']);
+                        if (!move_uploaded_file($_FILES['logo']['tmp_name'], $uploadfile)) {
+                            echo "BAG";
+
+                        }
+                        $imgPath = "/images/products/" . $_FILES['logo']['name'];
+                    }
+                    else{
+                        $imgPath = "/images/products/template.png";
                     }
                     $blogM = new \Models\post();
                     $dateTime = new DateTime();
@@ -195,7 +201,7 @@ class User extends Controller
                         "slogan" => $_POST["slogan"],
                         "content" => $_POST["content"],
                         "dateOfPublication" => $dateTime->format('Y\-m\-d\ h:i:s'),
-                        "imgSrc" => "/images/products/" . $_FILES['logo']['name'],
+                        "imgSrc" => $imgPath,
                         "altSrc" => "",
                         "state" => "created",
                         "author" => $_SESSION["reg"]["userId"]

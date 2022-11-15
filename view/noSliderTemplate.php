@@ -148,5 +148,6 @@ $data['options']['lang']?>">
 <script src="/assets/js/custom.js"></script>
 <!-- chane color of item on nav panel-->
 <script src="/assets/js/nav-item-color.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 </html>
