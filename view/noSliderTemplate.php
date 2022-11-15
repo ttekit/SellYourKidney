@@ -36,6 +36,18 @@ $data['options']['lang']?>">
 <body>
 <div id="preloader" class="visible"></div>
 <div class="">
+    <div class="gradient-choose-container ml-5">
+        <div class="d-flex">
+            <button class="choose-gradient-button" id="black-pink">
+            </button>
+            <button class="choose-gradient-button" id="black-white">
+            </button>
+            <button class="choose-gradient-button" id="red-pink">
+            </button>
+            <button class="choose-gradient-button" id="pink-darkpink">
+            </button>
+        </div>
+    </div>
     <!-- header section strats -->
     <header class="header_section">
         <div class="container">

@@ -9,7 +9,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.min.js"></script>
 
 <html lang="<?= /** @var $data */
-$data['options']['lang']?>">
+$data['options']['lang'] ?>">
 <head>
     <!-- Basic -->
     <meta charset="utf-8"/>
@@ -38,10 +38,21 @@ $data['options']['lang']?>">
     <div id="preloader" class="visible"></div>
 
     <!-- header section starts -->
+    <div class="gradient-choose-container ml-5">
+        <div class="d-flex">
+            <button class="choose-gradient-button" id="black-pink">
+            </button>
+            <button class="choose-gradient-button" id="black-white">
+            </button>
+            <button class="choose-gradient-button" id="red-pink">
+            </button>
+            <button class="choose-gradient-button" id="pink-darkpink">
+            </button>
+        </div>
+    </div>
     <header class="header_section">
         <div class="container">
             <nav class="navbar navbar-expand-lg custom_nav-container ">
-
                 <a class="navbar-brand" href="/"><img width="250"
                                                       src="/<?php echo $data['options']['logo'] ?>"
                                                       alt="#"/></a>
@@ -79,7 +90,6 @@ $data['options']['lang']?>">
                             <?php
                         }
                     } ?>
-
                     <?php require_once(COMPONENTS_PATH . "navbar.php") ?>
                 </ul>
             </nav>
@@ -147,12 +157,7 @@ $data['options']['lang']?>">
                                     сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или
                                     менее стандартное заполнение шаблона, а также реальное распределение букв и
                                     пробелов в абзацах, которое не получается при простой дубликации "Здесь ваш
-                                    текст.. Здесь ваш текст.. Здесь ваш текст.." Многие программы электронной
-                                    вёрстки и редакторы HTML используют Lorem Ipsum в качестве текста по умолчанию,
-                                    так что поиск по ключевым словам "lorem ipsum" сразу показывает, как много
-                                    веб-страниц всё ещё дожидаются своего настоящего рождения. За прошедшие годы
-                                    текст Lorem Ipsum получил много версий. Некоторые версии появились по ошибке,
-                                    некоторые - намеренно (например, юмористические варианты). </p>
+                                    текст.. Здесь ваш текст.. Здесь ваш текст.." </p>
                                 <div class="btn-box">
                                     <a href="" class="btn1">
                                         Shop Now
@@ -181,12 +186,7 @@ $data['options']['lang']?>">
                                     отдалённо не напоминают латынь. Если вам нужен Lorem Ipsum для серьёзного
                                     проекта, вы наверняка не хотите какой-нибудь шутки, скрытой в середине абзаца.
                                     Также все другие известные генераторы Lorem Ipsum используют один и тот же
-                                    текст, который они просто повторяют, пока не достигнут нужный объём. Это делает
-                                    предлагаемый здесь генератор единственным настоящим Lorem Ipsum генератором. Он
-                                    использует словарь из более чем 200 латинских слов, а также набор моделей
-                                    предложений. В результате сгенерированный Lorem Ipsum выглядит правдоподобно, не
-                                    имеет повторяющихся абзацей или "невозможных" слов.
-                                </p>
+                                    текст, который они просто повторяют.
                                 <div class="btn-box">
                                     <a href="" class="btn1">
                                         Shop Now
@@ -245,7 +245,7 @@ $data['options']['lang']?>">
                                 <form action="/Contact/addEmailingList" method="post">
                                     <fieldset>
                                         <div class="field">
-                                                <input type="email" placeholder="Enter Your Mail" name="email"/>
+                                            <input type="email" placeholder="Enter Your Mail" name="email"/>
                                             <!-- TODO: new database for same info-->
                                             <input type="submit" value="Subscribe"/>
                                         </div>
