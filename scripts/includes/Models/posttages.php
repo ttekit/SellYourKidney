@@ -22,7 +22,6 @@ class posttages extends \App\DBEngine
 
     public function AddElem($post_id, $tag_id)
     {
-
         return parent::addRow([
             'post_id' => $post_id,
             'tag_id' => $tag_id,

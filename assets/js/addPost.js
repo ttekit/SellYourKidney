@@ -9,19 +9,29 @@ window.addEventListener("load", () => {
         files = event.target.files;
         console.log(files);
     }
-    $(".addNewCategoryBtn").on("click", (e)=>{
+
+    $(".addNewCategoryBtn").on("click", (e) => {
         let $button = $(e.target);
-        if($button.hasClass("pressed")){
+        if ($button.hasClass("pressed")) {
             categories = "";
             $button.attr("class", "addNewCategoryBtn");
             console.log(categories);
-        }
-        else{
-            if(categories == ""){
+        } else {
+            if (categories == "") {
                 categories = $button.text();
                 $button.addClass("pressed");
             }
             console.log(categories);
+        }
+    });
+    $(".addNewTagBtn").on("click", (e) => {
+        let $button = $(e.target);
+        if ($button.hasClass("pressed")) {
+            tags.splice( tags.indexOf($button.text()), 1);
+            $button.attr("class", "addNewTagBtn");
+        } else {
+            tags.push($button.text());
+            $button.addClass("pressed");
         }
     });
 
@@ -32,7 +42,7 @@ window.addEventListener("load", () => {
         function () {
             let formData = new FormData();
 
-            if(files != null){
+            if (files != null) {
                 formData.append('logo', files[0]);
             }
 
@@ -40,7 +50,7 @@ window.addEventListener("load", () => {
             formData.append('slogan', $("[name='slogan']").val());
             formData.append('content', $("[name='content']").val());
             formData.append('category', categories);
-            formData.append('tag', tags);
+            formData.append('tags', JSON.stringify(tags));
 
             console.log(formData.getAll("slogan"));
             $.ajax({
@@ -54,7 +64,7 @@ window.addEventListener("load", () => {
                     console.log(data);
                     swal({
                         title: "Are you sure?",
-                        text: "Are you sure you want to share"+data,
+                        text: "Are you sure you want to share" + data,
                         icon: "success",
                         buttons: true,
                         dangerMode: true,
@@ -78,10 +88,10 @@ window.addEventListener("load", () => {
                         icon: "error"
                     })
                 },
-                beforeSend: function() {
+                beforeSend: function () {
                     $('#preloader').fadeIn(500);
                 },
-                complete: function() {
+                complete: function () {
                     $('#preloader').fadeOut(500);
                 },
             });

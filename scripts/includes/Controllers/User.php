@@ -7,6 +7,7 @@ use http\Header;
 use Models\blogcategories;
 use Models\categories;
 use Models\post;
+use Models\posttages;
 use Models\tags;
 use Models\userAcc;
 
@@ -210,7 +211,6 @@ class User extends Controller
 
                     $blogCatsM = new blogcategories();
                     $catsM = new categories();
-
                     $thisPost = $blogM->getOneRow([
                         "title" => $_POST["title"],
                         "slogan" => $_POST["slogan"],
@@ -218,7 +218,15 @@ class User extends Controller
                     ]);
 
                     $cat = $catsM->getCategoryByCategoryName($_POST["category"]);
-                    varDump($thisPost["id"]);
+                    $blogCatsM->AddElem($thisPost["id"], $cat["id"]);
+
+                    $tagsM = new tags();
+                    $blogTagsM = new posttages();
+                    $tagsArr = json_decode($_POST["tags"]);
+                    foreach ($tagsArr as $key=>$value){
+                        varDump($tagsM->getId(["tag"=>$value]));
+                        $blogTagsM->AddElem($thisPost["id"], $tagsM->getId(["tag"=>$value]));;
+                    }
 
                     $blogCatsM->AddElem($thisPost["id"], $cat["id"]);
 

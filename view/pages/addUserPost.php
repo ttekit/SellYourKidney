@@ -64,10 +64,16 @@
                             <div class="form-group">
                                 <label for="inputProjectLeader">Tags</label>
                                 <div class="tags">
-                                    <button class="addNewTagBtn">Add new</button>
-                                    <select class="tags-select hidden">
+                                    <?php
+                                    $catM = new \Models\tags();
+                                    $allCats = $catM->getManyRows();
 
-                                    </select>
+                                    foreach ($allCats as $key=>$value){
+                                        ?>
+                                        <a type="button" class="addNewTagBtn"><?=$value["tag"]?></a>
+                                        <?php
+                                    }
+                                    ?>
                                 </div>
                             </div>
                         </div>

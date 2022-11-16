@@ -41,13 +41,6 @@ WHERE id = " . $id
 				 ");
     }
 
-    public function UpdateImagePathOfPostById($id, $src)
-    {
-        parent::updateRow($id, [
-            "imgSrc" => $src
-        ]);
-    }
-
     public function removeOnePost($id)
     {
         $this->executeQuery("DELETE FROM blogcategories WHERE blogcategories.post_id = " . $id);
@@ -69,17 +62,4 @@ WHERE id = " . $id
             "imgSrc" => $path
         ]);
     }
-
-    public function makeNewPost($slogan, $dateofPublic, $imgSrc, $altSrc, $slug, $content)
-    {
-        return $this->addRow([
-            "slogan" => $slogan,
-            "dateofPublic" => $dateofPublic,
-            "imgSrc" => $imgSrc,
-            "altSrc" => $altSrc,
-            "slug" => $slug,
-            "content" => $content
-        ]);
-    }
-
 }
