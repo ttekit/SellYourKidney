@@ -1,19 +1,35 @@
 window.addEventListener("load", () => {
     let files;
+    let categories = "";
+    let tags = [];
 
     $('input[type=file]').on('change', prepareUpload);
 
     function prepareUpload(event) {
         files = event.target.files;
-        console.log(files)
+        console.log(files);
     }
+    $(".addNewCategoryBtn").on("click", (e)=>{
+        let $button = $(e.target);
+        if($button.hasClass("pressed")){
+            categories = "";
+            $button.attr("class", "addNewCategoryBtn");
+            console.log(categories);
+        }
+        else{
+            if(categories == ""){
+                categories = $button.text();
+                $button.addClass("pressed");
+            }
+            console.log(categories);
+        }
+    });
 
 
     // Отсыл данных на сервер
     $(document).on('click',
         '#submit',
         function () {
-            let postForm = $(".addNewPost");
             let formData = new FormData();
 
             if(files != null){
@@ -23,6 +39,8 @@ window.addEventListener("load", () => {
             formData.append('title', $("[name='title']").val());
             formData.append('slogan', $("[name='slogan']").val());
             formData.append('content', $("[name='content']").val());
+            formData.append('category', categories);
+            formData.append('tag', tags);
 
             console.log(formData.getAll("slogan"));
             $.ajax({

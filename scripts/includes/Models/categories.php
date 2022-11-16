@@ -10,7 +10,7 @@ class categories extends \App\DBEngine
 
     }
 
-    public function getByCategory($category)
+    public function getCategoryByCategoryName($category)
     {
         $result = $this->getManyRows(["category" => $category]);
         if (count($result) > 0) {

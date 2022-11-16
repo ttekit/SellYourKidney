@@ -47,10 +47,18 @@
                                     <div class="postId hidden"></div>
                                     <div class="categories-active-categories">
                                     </div>
-                                    <button class="addNewCategoryBtn">Add new</button>
-                                    <select class="categories-select hidden">
+                                    <?php
 
-                                    </select>
+                                    $catM = new \Models\categories();
+                                    $allCats = $catM->getAllCategories();
+                                    foreach ($allCats as $key=>$value){
+                                        ?>
+                                            <a type="button" class="addNewCategoryBtn"><?=$value["category"]?></a>
+                                    <?php
+                                    }
+                                    ?>
+
+
                                 </div>
                             </div>
                             <div class="form-group">
@@ -106,8 +114,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.12.17/paper-full.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
 <script src="/assets/js/addPost.js"></script>
+
 <script>
     $(document).ready(function() {
         $('#summernote').summernote();

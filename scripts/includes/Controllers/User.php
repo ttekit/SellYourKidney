@@ -4,6 +4,8 @@ namespace App;
 
 use DateTime;
 use http\Header;
+use Models\blogcategories;
+use Models\categories;
 use Models\post;
 use Models\tags;
 use Models\userAcc;
@@ -180,8 +182,7 @@ class User extends Controller
     {
         if ($this->CheckOnLogin()) {
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                if (isset($_POST["title"]) && isset($_POST["slogan"]) && isset($_POST["content"])) {
-
+                if (isset($_POST["title"]) && isset($_POST["slogan"]) && isset($_POST["content"]) && isset($_POST["category"])) {
                     if(isset($_FILES['logo'])){
                         $uploaddir = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . "products" . DIRECTORY_SEPARATOR;
                         $uploadfile = $uploaddir . basename($_FILES['logo']['name']);
@@ -206,6 +207,21 @@ class User extends Controller
                         "state" => "created",
                         "author" => $_SESSION["reg"]["userId"]
                     ]);
+
+                    $blogCatsM = new blogcategories();
+                    $catsM = new categories();
+
+                    $thisPost = $blogM->getOneRow([
+                        "title" => $_POST["title"],
+                        "slogan" => $_POST["slogan"],
+                        "author" => $_SESSION["reg"]["userId"]
+                    ]);
+
+                    $cat = $catsM->getCategoryByCategoryName($_POST["category"]);
+                    varDump($thisPost["id"]);
+
+                    $blogCatsM->AddElem($thisPost["id"], $cat["id"]);
+
                 }
             }
         } else {
