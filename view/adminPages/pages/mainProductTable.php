@@ -7,7 +7,7 @@
 
                     <div class="card card-blue ">
                         <div class="card-header">
-                            <h3 class="card-title">Управление продуктакми в магазине</h3>
+                            <h3 class="card-title">Управление продуктами в магазине</h3>
                             <a href="./AddProd/" class="border-0"><button class="border-3 bg-success text-white border-success ">Add New Prod</button></a>
                         </div>
                         <?php
@@ -49,7 +49,5 @@
         </div>
         <!-- /.row -->
 </div><!-- /.container-fluid -->
-</section>
-<!-- /.content -->
-</div>
+
 <script src="/assets/js/productwork.js"></script>

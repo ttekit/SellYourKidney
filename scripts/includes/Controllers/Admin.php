@@ -13,7 +13,7 @@ class admin extends Controller
         $this->data["success"] = null;
         $this->data["message"] = null;
         if (UserAuthorisation::isUserAuthorized()) {
-            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "mainAdminPanel" . EXT, $this->data);
+            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "mainIndex" . EXT, $this->data);
         } else {
             $this->Login();
         }
@@ -26,14 +26,14 @@ class admin extends Controller
     public function blogManage()
     {
         if (UserAuthorisation::isUserAuthorized()) {
-            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "blogManage" . EXT, $this->data);
+            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "mainBlogTable" . EXT, $this->data);
         }
     }
 
     public function AddProd()
     {
         if (UserAuthorisation::isUserAuthorized()) {
-            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "mainAdminProductAdd" . EXT, $this->data);
+            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "addAdminProduct" . EXT, $this->data);
         }
     }
 
@@ -42,7 +42,7 @@ class admin extends Controller
         if (UserAuthorisation::isUserAuthorized()) {
             if (isset($_GET["postId"])) {
                 $this->data["postId"] = $_GET["postId"];
-                View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "OnePostEdit" . EXT, $this->data);
+                View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "editPostTable" . EXT, $this->data);
             }
         }
     }
@@ -54,7 +54,7 @@ class admin extends Controller
             $this->data["allProd"] = $productM->getAllProducts();
             unset($productM);
 
-            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "productManage" . EXT, $this->data);
+            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "mainProductTable" . EXT, $this->data);
         }
     }
 
@@ -67,7 +67,7 @@ class admin extends Controller
                 $this->data["prodId"] = $_GET["prodId"];
                 $prodM = new \Models\products();
                 $this->data["prodData"] = $prodM->getById($this->data["prodId"]);
-                View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "OneProdEdit" . EXT, $this->data);
+                View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "mainOneProductEdit" . EXT, $this->data);
             }
         }
     }
@@ -76,7 +76,7 @@ class admin extends Controller
     function buttons()
     {
         if (UserAuthorisation::isUserAuthorized()) {
-            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "buttons" . EXT, $this->data);
+            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "mainButtons" . EXT, $this->data);
         } else {
             $this->Login();
         }
@@ -86,7 +86,7 @@ class admin extends Controller
     function cards()
     {
         if (UserAuthorisation::isUserAuthorized()) {
-            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "cards" . EXT, $this->data);
+            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "mainCards" . EXT, $this->data);
         } else {
             $this->Login();
         }
@@ -96,7 +96,7 @@ class admin extends Controller
     function colors()
     {
         if (UserAuthorisation::isUserAuthorized()) {
-            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "colors" . EXT, $this->data);
+            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "mainColors" . EXT, $this->data);
         } else {
             $this->Login();
         }
@@ -106,7 +106,7 @@ class admin extends Controller
     function borders()
     {
         if (UserAuthorisation::isUserAuthorized()) {
-            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "borders" . EXT, $this->data);
+            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "mainBorders" . EXT, $this->data);
         } else {
             $this->Login();
         }
@@ -116,7 +116,7 @@ class admin extends Controller
     function animations()
     {
         if (UserAuthorisation::isUserAuthorized()) {
-            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "animations" . EXT, $this->data);
+            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "mainAnimations" . EXT, $this->data);
         } else {
             $this->Login();
         }
@@ -126,17 +126,7 @@ class admin extends Controller
     function other()
     {
         if (UserAuthorisation::isUserAuthorized()) {
-            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "other" . EXT, $this->data);
-        } else {
-            $this->Login();
-        }
-    }
-
-    public
-    function forgotPassword()
-    {
-        if (UserAuthorisation::isUserAuthorized()) {
-            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "forgotPassword" . EXT, $this->data);
+            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "mainOther" . EXT, $this->data);
         } else {
             $this->Login();
         }
@@ -146,7 +136,7 @@ class admin extends Controller
     function charts()
     {
         if (UserAuthorisation::isUserAuthorized()) {
-            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "charts" . EXT, $this->data);
+            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "mainCharts" . EXT, $this->data);
         } else {
             $this->Login();
         }
@@ -156,7 +146,7 @@ class admin extends Controller
     function tables()
     {
         if (UserAuthorisation::isUserAuthorized()) {
-            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "tables" . EXT, $this->data);
+            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "mainPropertyTable" . EXT, $this->data);
         } else {
             $this->Login();
         }
@@ -167,7 +157,7 @@ class admin extends Controller
     function userManage()
     {
         if (UserAuthorisation::isUserAuthorized()) {
-            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "userManage" . EXT, $this->data);
+            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "mainUserTable" . EXT, $this->data);
         } else {
             $this->Login();
         }
