@@ -1,6 +1,6 @@
-<div class="content-wrapper adminBlogCont">
+<div class="content-wrapper adminProdCont">
     <!-- Main content -->
-    <form method="post" id="addNewPost" enctype="multipart/form-data">
+    <form method="post" id="addNewProduct" enctype="multipart/form-data">
         <section class="content col-12">
             <div class="row">
                 <div class="col-md-12 file-input">
@@ -34,47 +34,12 @@
                         </div>
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="inputName">Title</label>
-                                <input type="text" id="inputName" name="title" class="form-control">
+                                <label for="inputName">Name</label>
+                                <input type="text" id="inputName" name="name" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="inputDescription">Slogan</label>
-                                <textarea id="inputDescription" class="form-control" name="slogan"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputClientCompany">Categories</label>
-                                <div class="categories">
-                                    <div class="postId hidden"></div>
-                                    <div class="categories-active-categories">
-                                    </div>
-                                    <?php
-
-                                    $catM = new \Models\categories();
-                                    $allCats = $catM->getAllCategories();
-                                    foreach ($allCats as $key=>$value){
-                                        ?>
-                                        <a type="button" class="addNewCategoryBtn"><?=$value["category"]?></a>
-                                        <?php
-                                    }
-                                    ?>
-
-
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputProjectLeader">Tags</label>
-                                <div class="tags">
-                                    <?php
-                                    $catM = new \Models\tags();
-                                    $allCats = $catM->getManyRows();
-
-                                    foreach ($allCats as $key=>$value){
-                                        ?>
-                                        <a type="button" class="addNewTagBtn"><?=$value["tag"]?></a>
-                                        <?php
-                                    }
-                                    ?>
-                                </div>
+                                <label for="inputDescription">Price</label>
+                                <input id="inputDescription" type="number" class="form-control" name="price" />
                             </div>
                         </div>
                         <!-- /.card-body -->
@@ -108,7 +73,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <a href="/User/" class="btn btn-secondary">Cancel</a>
+                    <a href="/Admin/" class="btn btn-secondary">Cancel</a>
                     <input type="submit" value="Save Changes" id="submit" class="btn btn-success float-right">
                 </div>
             </div>
@@ -118,4 +83,4 @@
 </div>
 
 
-<script src="/assets/js/addPost.js"></script>
+<script src="/assets/js/addProduct.js"></script>

@@ -124,7 +124,7 @@ namespace App {
                 }
                 $query = mb_substr($query, 0, mb_strlen($query) - 2);
                 $query .= ");";
-                varDump($query);
+                echo ($query);
                 $sth = $this->_dbh->prepare($query);
                 $sth->execute();
                 return null;
@@ -151,7 +151,6 @@ namespace App {
             }
             $query = mb_substr($query, 0, mb_strlen($query) - 1);
             $query .= " WHERE id=" . $id . ";";
-
 
             $sth = $this->_dbh->prepare($query);
             $sth->execute();

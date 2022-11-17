@@ -2,9 +2,11 @@
 
 namespace App;
 
+use Models\blogcategories;
 use Models\categories;
 use Models\comments;
 use Models\post;
+use Models\posttages;
 use Models\tags;
 use Models\userAcc;
 use Models\userSocLincs;
@@ -61,6 +63,32 @@ class Ajax extends Controller
                 $message = $_POST["message"];
                 $commentsM = new comments();
                 echo $commentsM->insertNewComment($postId, $login, $email, $message, $messageId);
+            }
+        }
+    }
+
+    public function addNewProd()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST["name"]) && isset($_POST["content"]) && isset($_POST["price"])) {
+                $imgPath = "/images/products/template.png";
+                if (isset($_FILES['logo'])) {
+                    $uploaddir = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . "products" . DIRECTORY_SEPARATOR;
+                    $uploadfile = $uploaddir . basename($_FILES['logo']['name']);
+                    if (!move_uploaded_file($_FILES['logo']['tmp_name'], $uploadfile)) {
+                        echo "BAG";
+                    }
+                    $imgPath = "/images/products/" . $_FILES['logo']['name'];
+                }
+                $blogM = new \Models\products();
+                $blogM->addRow([
+                    "name" => $_POST["name"],
+                    "price" => $_POST["price"],
+                    "img_src" => $imgPath,
+                    "img_alt" => "/",
+                    "content" => $_POST["content"]
+                ]);
+
             }
         }
     }
@@ -142,7 +170,9 @@ class Ajax extends Controller
             }
         }
     }
-    public function deleteOneProduct(){
+
+    public function deleteOneProduct()
+    {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($_POST["prodId"])) {
                 $prodM = new \Models\products();
@@ -151,7 +181,9 @@ class Ajax extends Controller
             }
         }
     }
-    public function banUser(){
+
+    public function banUser()
+    {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($_POST["id"])) {
                 $prodM = new \Models\userAcc();

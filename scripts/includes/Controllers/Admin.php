@@ -230,7 +230,6 @@ class admin extends Controller
     {
         if (UserAuthorisation::isUserAuthorized()) {
             if ($_SERVER['REQUEST_METHOD'] == "POST") {
-                varDump($_POST);
                 if (isset($_POST["id"]) &&isset($_POST['name']) && isset($_POST['price']) && isset($_POST['content']) && isset($_POST['file'])) {
                     $postM = new \Models\products();
                     $postM->updateRow($_POST["id"], [

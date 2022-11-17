@@ -21,7 +21,7 @@
                                     <h2><?= $post["name"] ?></h2>
                                     <h3><?= $post["price"] ?></h3>
                                     <div class="row">
-                                        <img class='product-img-box-manage' src="<?= $post["img_src"] ?>"
+                                        <img class='product-img-box-manage' src="<?= $post["img_src"]?>" width="450px"
                                              alt="<?= $post["img_alt"] ?>">
                                         <div class="post-manage flex-column">
                                             <div class="hidden id"><?= $post["id"] ?></div>

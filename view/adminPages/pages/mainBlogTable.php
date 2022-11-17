@@ -20,14 +20,15 @@
                                 <div class="post">
                                     <h2><?= $post["title"] ?></h2>
                                     <div class="row">
-                                        <img class='blog-img-box-manage' src="<?= $post["imgSrc"] ?>"
+                                        <img class='blog-img-box-manage' src="<?= $post["imgSrc"] ?>" width="450px"
                                              alt="<?= $post["altSrc"] ?>">
                                         <div class="post-manage flex-column">
                                             <div class="hidden id"><?= $post["id"] ?></div>
                                             <button href="#" class="btn btn-info btn-lg blog-edit-button blog-btn">
                                                 <i class="fas fa-info-circle">Edit</i>
                                             </button>
-                                            <button href="#" class="btn btn-info btn-lg blog-update-button blog-btn" disabled>
+                                            <button href="#" class="btn btn-info btn-lg blog-update-button blog-btn"
+                                                    disabled>
                                                 <i class="fas fa-info-circle">Update</i>
                                             </button>
                                             <button href="#" class="btn btn-danger btn-lg blog-delete-button blog-btn">
