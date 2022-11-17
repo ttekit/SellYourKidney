@@ -1,7 +1,7 @@
 window.addEventListener("load", function () {
     "use strict"
-    var postId = parseInt($("#post-id").text());
-    var getAnswerFrom = function ($parent, oldData) {
+    let postId = parseInt($("#post-id").text());
+    let getAnswerFrom = function ($parent, oldData) {
         console.log(oldData.id);
         let $data;
         $data = $(`<form action="saveComment" method="post" id="comment-form" class="form-horizontal form-wizzard">
@@ -9,7 +9,7 @@ window.addEventListener("load", function () {
                             <div class="row">
                                 <div class="col-lg-6 col-md-4 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <input name="login" type="name" class="form-control" placeholder="Enter your name ..."/>
+                                        <input name="login" class="form-control" placeholder="Enter your name ..."/>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-4 col-sm-12 col-xs-12">
@@ -27,45 +27,53 @@ window.addEventListener("load", function () {
                         </form>`);
 
 
-        $data.submit(function (e) {
+        $data.submit(dataSubmitFunc)
+
+        function dataSubmitFunc(e) {
+
             e.preventDefault();
 
-            var $nameInput = $data.find("input[name*='login']");
-            var $emailInput = $data.find("input[name*='email']");
-            var $messageInput = $data.find("textarea[name*='message']");
+            let $nameInput = $data.find("input[name*='login']");
+            let $emailInput = $data.find("input[name*='email']");
+            let $messageInput = $data.find("textarea[name*='message']");
 
-            var userMessage = {
+            let userMessage = {
                 postId: postId,
                 login: $nameInput.val(),
                 email: $emailInput.val(),
                 message: $messageInput.val(),
                 messageId: oldData.id
             }
+
             $.ajax({
                 url: "/ajax/saveComment",
                 method: "POST",
                 data: userMessage,
-                beforeSend: function() {
+                beforeSend: function () {
                     $('#preloader').fadeIn(500);
                 },
-                complete: function() {
+                complete: function () {
                     location.reload();
                 },
                 error: (msg) => {
                     alert(msg);
                 }
             })
+
             $data.remove();
             $parent.find(".comment-answer-btn").removeClass("hidden");
-        })
+
+        }
+
         return $data;
     }
-    var getOneCommentBlock = function (comment) {
-        var $block = $(`<li class="media">
+
+    let getOneCommentBlock = function (comment) {
+        let $block = $(`<li class="media">
                                 <div class="comment-id">${comment.id}</div>
                                 
                                 <div class="media-left">
-                                    <img class="comment-ava"src="/assets/images/blog/mike.jpg" alt="">
+                                    <img class="comment-ava" src="/assets/images/blog/mike.jpg" alt="">
                                 </div>
                                 <div class="media-body">
                                 <div class = "comment-header">
@@ -89,13 +97,15 @@ window.addEventListener("load", function () {
             $(e.target).addClass("hidden");
             $block.append(getAnswerFrom($block, comment));
         })
+
         return $block;
     }
-    var getOneChildBlock = function (data) {
-        var $block = $(`<li class="media child">
+
+    let getOneChildBlock = function (data) {
+        let $block = $(`<li class="media child">
                                 <div class="comment-id">${data.id}</div>
                                 <div class="media-left">
-                                    <img class="comment-ava"src="/assets/images/blog/mike.jpg" alt="">
+                                    <img class="comment-ava" src="/assets/images/blog/mike.jpg" alt="">
                                 </div>
                                 <div class="media-body">
                                     <div class = "comment-header">
@@ -118,9 +128,11 @@ window.addEventListener("load", function () {
             $(e.target).addClass("hidden");
             $block.append(getAnswerFrom($block, data));
         })
+
         return $block;
     }
-    var getSubComments = function (parent_id, $block) {
+
+    let getSubComments = function (parent_id, $block) {
         $.ajax({
             url: "/ajax/getSubComments",
             method: "POST",
@@ -128,7 +140,7 @@ window.addEventListener("load", function () {
                 "parentId": parent_id
             },
             success: (data) => {
-                var comments = JSON.parse(data);
+                let comments = JSON.parse(data);
                 for (let i = 0; i < comments.length; i++) {
                     $block.append(getOneChildBlock(comments[i]));
                 }
@@ -139,7 +151,6 @@ window.addEventListener("load", function () {
         })
     }
 
-//TODO: change css
     if (!isNaN(postId)) {
         $.ajax({
             url: "/ajax/getComments",
@@ -148,10 +159,10 @@ window.addEventListener("load", function () {
                 "postId": postId
             },
             success: (data) => {
-                var comments = JSON.parse(data);
+                let comments = JSON.parse(data);
                 if (comments.length > 0) {
-                    var $commContainer = $('.card-body');
-                    comments.forEach((item, index) => {
+                    let $commContainer = $('.card-body');
+                    comments.forEach((item) => {
                         $commContainer.append(getOneCommentBlock(item))
                     })
                 }
@@ -163,15 +174,15 @@ window.addEventListener("load", function () {
         })
     }
 
-    var $messageForm = $("#comment-form");
+    let $messageForm = $("#comment-form");
 
     $messageForm.submit(function (e) {
         e.preventDefault();
-        var $nameInput = $messageForm.find("input[name*='login']");
-        var $emailInput = $messageForm.find("input[name*='email']");
-        var $messageInput = $messageForm.find("textarea[name*='message']");
+        let $nameInput = $messageForm.find("input[name*='login']");
+        let $emailInput = $messageForm.find("input[name*='email']");
+        let $messageInput = $messageForm.find("textarea[name*='message']");
 
-        var userMessage = {
+        let userMessage = {
             postId: postId,
             login: $nameInput.val(),
             email: $emailInput.val(),

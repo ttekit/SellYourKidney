@@ -1,5 +1,5 @@
 window.addEventListener("load", () => {
-    var files;
+    let files;
 
     $('input[type=file]').on('change', prepareUpload);
 

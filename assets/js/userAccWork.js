@@ -1,10 +1,10 @@
 window.addEventListener("load", function () {
-    let $btnsDelete = $(".ban-user");
 
+    let $btnsDelete = $(".ban-user");
     $btnsDelete.on("click", function (e){
+
         let $container = $(e.target).parent();
         let $userId = $container.find("#id").val();
-        console.log($userId);
 
         $.ajax({
             url: "/ajax/banUser",
@@ -12,7 +12,7 @@ window.addEventListener("load", function () {
             data: {
                 "id": $userId
             },
-            success: (data) => {
+            success: () => {
                     $container.parent("div").remove();
             },
             error: (msg) => {

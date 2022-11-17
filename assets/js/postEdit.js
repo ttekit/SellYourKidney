@@ -1,15 +1,17 @@
 window.addEventListener("load", function () {
+
     let globalData = {  };
 
-    var addNewCategory = function (categoryName) {
+    let addNewCategory = function (categoryName) {
         return $(`<option class="new-category-option">${categoryName}</option>`);
     }
-    var addNewCategoryButton = function (categoryName) {
+
+    let addNewCategoryButton = function (categoryName) {
         let $btn = $(`<button class="category-elem">${categoryName}</button>`);
         $btn.on("click", function () {
 
             for (let i = 0; i < globalData.category.length; i++) {
-                if (globalData.category[i] == categoryName) {
+                if (globalData.category[i] === categoryName) {
                     globalData.category.splice(i);
                     e.target.remove();
                     break;
@@ -20,16 +22,17 @@ window.addEventListener("load", function () {
         return $btn;
     }
 
-    var addNewTag = function (categoryName) {
+    let addNewTag = function (categoryName) {
         return $(`<option class="new-tag-option">${categoryName}</option>`);
     }
-    var addNewTagButton = function (tagName) {
+
+    let addNewTagButton = function (tagName) {
         let $btn = $(`<button class="tag-elem">${tagName}</button>`);
         $btn.on("click", function (e) {
 
             for (let i = 0; i < globalData.tag.length; i++) {
                 console.log(globalData.tag[i]);
-                if (globalData.tag[i] == tagName) {
+                if (globalData.tag[i] === tagName) {
 
                     globalData.tag.splice(i);
                     e.target.remove();
@@ -53,16 +56,17 @@ window.addEventListener("load", function () {
     let $postId = $categoryBlock.find(".postId").text();
     $(".category-elem").on("click", function (e) {
         for (let i = 0; i < globalData.category.length; i++) {
-            if (globalData.category[i] == e.target.innerHTML) {
+            if (globalData.category[i] === e.target.innerHTML) {
                 globalData.category.splice(i);
                 e.target.remove();
                 break;
             }
         }
     });
+
     $(".tag-elem").on("click", function (e) {
         for (let i = 0; i < globalData.tag.length; i++) {
-            if (globalData.tag[i] == e.target.innerHTML) {
+            if (globalData.tag[i] === e.target.innerHTML) {
                 globalData.tag.splice(i);
                 e.target.remove();
                 break;
@@ -122,7 +126,6 @@ window.addEventListener("load", function () {
 
 
     $addCategoryBtn.on("click", function () {
-        // TODO: добвамить всевозможные проверки на корректнось данных
         let $select = $(".categories-select");
         $select.removeClass("hidden");
         for (let i = 0; i < globalData.category.length; i++) {
@@ -135,12 +138,10 @@ window.addEventListener("load", function () {
             $select.empty();
             let newOption = addNewCategoryButton(selectedOption.val());
             $(".categories-active-categories").append(newOption);
-            return;
         });
     })
 
     $addTagBtn.on("click", function () {
-        // TODO: добвамить всевозможные проверки на корректнось данных
         let $select = $(".tags-select");
         $select.removeClass("hidden");
         for (let i = 0; i < globalData.tag.length; i++) {
@@ -153,7 +154,6 @@ window.addEventListener("load", function () {
             $select.empty();
             let newOption = addNewTagButton(selectedOption.val());
             $(".tags-active-tags").append(newOption);
-            return;
         });
     })
 })

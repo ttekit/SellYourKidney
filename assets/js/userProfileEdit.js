@@ -1,9 +1,9 @@
 window.addEventListener("load", function () {
 
-
     let $addNewSocButtom = $(".add-new-soc-button");
     let $container = $(".soc-media-group");
     let $deleteSocLinkButton = $(".delete-soc-link-button");
+
     $addNewSocButtom.on("click", () => {
         $container.append(`
             <li class="inputs-container list-group-item d-flex justify-content-between align-items-center p-3">
@@ -12,9 +12,9 @@ window.addEventListener("load", function () {
                     <input type="button" class="mb-0 border-0 appendSocDataToArray" value="Add"/>
             </li>
         `)
-        $(".appendSocDataToArray").on("click", (e) => {
+
+        $(".appendSocDataToArray").on("click", () => {
             let allInputs = $(".inputs-container input[type=text]");
-            let tmp = {}
             $.ajax({
                 type: "POST",
                 url: "/ajax/addNewSocLinkData",
@@ -42,10 +42,11 @@ window.addEventListener("load", function () {
             });
         })
     })
+
     $deleteSocLinkButton.on("click", (e) => {
         let $parentContainer = $(e.target).parent().parent();
-        $parentContainer.css("color", "red");
         let idToDelete = $parentContainer.find(".soc-link-id-container").val();
+        $parentContainer.css("color", "red");
         $.ajax({
             type: "POST",
             url: "/ajax/removeSocLinkById",

@@ -91,4 +91,3 @@
     </form>
     <!-- /.content -->
 </div>
-<script src="/assets/js/SaveFileToDataBase.js"></script>

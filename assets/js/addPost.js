@@ -1,4 +1,5 @@
 window.addEventListener("load", () => {
+
     let files;
     let categories = "";
     let tags = [];
@@ -10,6 +11,7 @@ window.addEventListener("load", () => {
         console.log(files);
     }
 
+
     $(".addNewCategoryBtn").on("click", (e) => {
         let $button = $(e.target);
         if ($button.hasClass("pressed")) {
@@ -17,7 +19,7 @@ window.addEventListener("load", () => {
             $button.attr("class", "addNewCategoryBtn");
             console.log(categories);
         } else {
-            if (categories == "") {
+            if (categories === "") {
                 categories = $button.text();
                 $button.addClass("pressed");
             }
@@ -27,7 +29,7 @@ window.addEventListener("load", () => {
     $(".addNewTagBtn").on("click", (e) => {
         let $button = $(e.target);
         if ($button.hasClass("pressed")) {
-            tags.splice( tags.indexOf($button.text()), 1);
+            tags.splice(tags.indexOf($button.text()), 1);
             $button.attr("class", "addNewTagBtn");
         } else {
             tags.push($button.text());
@@ -36,10 +38,10 @@ window.addEventListener("load", () => {
     });
 
 
-    // Отсыл данных на сервер
     $(document).on('click',
         '#submit',
         function () {
+
             let formData = new FormData();
 
             if (files != null) {
@@ -52,7 +54,6 @@ window.addEventListener("load", () => {
             formData.append('category', categories);
             formData.append('tags', JSON.stringify(tags));
 
-            console.log(formData.getAll("slogan"));
             $.ajax({
                 url: '/user/addNewPost',
                 type: 'POST',
@@ -73,7 +74,7 @@ window.addEventListener("load", () => {
                             if (willDelete) {
                                 swal("Poof! Your post is on checking!", {
                                     icon: "success",
-                                }).then((willDelete) => {
+                                }).then(() => {
                                     location.href = "/Blog/";
                                 });
                             } else {

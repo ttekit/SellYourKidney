@@ -1,16 +1,20 @@
 window.addEventListener("load", function (){
-    var $btnsContainer = $(".post-manage");
-    var $btnsUpdate = $btnsContainer.find(".blog-update-button");
-    var $btnsEdit = $btnsContainer.find(".blog-edit-button");
-    var $btnsDelete = $btnsContainer.find(".blog-delete-button");
-    var $status = $btnsContainer.find(".form-control");
+    let $btnsContainer = $(".post-manage");
+    let $btnsUpdate = $btnsContainer.find(".blog-update-button");
+    let $btnsEdit = $btnsContainer.find(".blog-edit-button");
+    let $btnsDelete = $btnsContainer.find(".blog-delete-button");
+    let $status = $btnsContainer.find(".form-control");
+
     $btnsEdit.on("click", function (e){
         $postId = $(e.target).closest("div").find(".id").text();
         window.location = "/admin/OnePostEdit?postId="+$postId;
     })
+
     $btnsDelete.on("click", function (e){
-        var $container = $(e.target).closest("div");
-        var $postId = $container.find(".id").text();
+
+        let $container = $(e.target).closest("div");
+        let $postId = $container.find(".id").text();
+
         $.ajax({
             url: "/ajax/deleteOnePost",
             method: "POST",
@@ -28,7 +32,9 @@ window.addEventListener("load", function (){
             }
         })
     })
+
     $btnsUpdate.on("click", function (e){
+
         let $container = $(e.target).closest("div");
         let $postId = $container.find(".id").text();
         let newData = $container.find(".form-control option:selected").val();
@@ -55,13 +61,12 @@ window.addEventListener("load", function (){
             }
         })
 
-        var button = $container.find(".blog-update-button");
-        button.attr("disabled", true);
+        let updateButton = $container.find(".blog-update-button");
+        updateButton.attr("disabled", true);
     });
 
     $status.change(function (e){
-        $container = $(e.target).closest("div");
-        var button = $container.find(".blog-update-button");
-        button.attr("disabled", false)
+        let updateButton =  $(e.target).closest("div").find(".blog-update-button");
+        updateButton.attr("disabled", false)
     })
 });
