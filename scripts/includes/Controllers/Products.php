@@ -23,11 +23,9 @@ class Products extends Controller
                 $this->data["pageData"] = $onePost;
                 $this->format_options();
                 $this->returnNavigationPanel();
-                View::render(VIEWS_PATH . "template" . EXT, PAGES_PATH . "mainProductPage" . EXT, $this->data);
+                View::render(VIEWS_PATH . "template" . EXT, PAGES_PATH . "pageProduct" . EXT, $this->data);
             }
         }
-        $this->format_options();
-        $this->returnNavigationPanel();
     }
 
     private function format_products(){

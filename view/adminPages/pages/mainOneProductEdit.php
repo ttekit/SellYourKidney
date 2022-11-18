@@ -26,7 +26,7 @@
                 </div>
                 <!-- /.card -->
             </div>
-            <form method="post" action="/admin/updateProd" class="row-cols-2">
+            <form method="post" action="/admin/updateProd" class="row">
                 <input type="text" name="id" id="id" class="d-none" value="<?= /** @var $data */
                 $data["prodId"] ?>"/>
                 <div class="col-md-6">
@@ -83,7 +83,7 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <a href="#" class="btn btn-secondary">Cancel</a>
+                <a href="/admin/" class="btn btn-secondary">Cancel</a>
                 <input type="submit" value="Save Changes" class="btn btn-success float-right">
             </div>
         </div>

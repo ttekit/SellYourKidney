@@ -427,7 +427,10 @@ a:focus {
     box-shadow: 5px 5px 5px -5px rgba(0, 0, 0, .2);
     border: solid #fff 10px;
 }
+.product-img-container{
+    padding-left: 10%;
 
+}
 .product_section .box .img-box {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -544,6 +547,29 @@ a:focus {
     transition: all .2s;
     -webkit-transform: translateY(100%);
     transform: translateY(100%);
+}
+
+.product{
+    min-width: 400px;
+    max-width: 700px;
+    justify-content: center;
+}
+
+@supports (display: flex) {
+    @media screen and (max-width: 1280px) {
+        .products-container{
+            flex-direction: column;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}
+
+.products-container{
+    align-content: center;
+    justify-content: center;
+    align-items: center;
 }
 
 .product_section .options {
