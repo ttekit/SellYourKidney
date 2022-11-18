@@ -93,6 +93,35 @@ class Ajax extends Controller
         }
     }
 
+    public function updateProduct()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST["name"]) && isset($_POST["content"]) && isset($_POST["price"]) && isset($_POST["id"])) {
+                $imgPath = "/images/products/template.png";
+                varDump($_FILES);
+
+                if (isset($_FILES['logo'])) {
+                    $uploaddir = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . "products" . DIRECTORY_SEPARATOR;
+                    $uploadfile = $uploaddir . basename($_FILES['logo']['name']);
+                    if (!move_uploaded_file($_FILES['logo']['tmp_name'], $uploadfile)) {
+                        echo "BAG";
+                    }
+                    $imgPath = "/images/products/" . $_FILES['logo']['name'];
+                }
+
+                $blogM = new \Models\products();
+                $blogM->updateRow($_POST["id"], [
+                    "name" => $_POST["name"],
+                    "price" => $_POST["price"],
+                    "img_src" => $imgPath,
+                    "img_alt" => "/",
+                    "content" => $_POST["content"]
+                ]);
+
+            }
+        }
+    }
+
     public function deleteOnePost()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {

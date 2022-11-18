@@ -167,6 +167,8 @@ class admin extends Controller
     function updatePost()
     {
         if (UserAuthorisation::isUserAuthorized()) {
+            varDump("ASDASD");
+            varDump($_POST);
             if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 if (isset($_POST['title']) && isset($_POST['slogan']) && isset($_POST['content']) && isset($_POST['files'])) {
                     $postM = new post();
@@ -178,7 +180,7 @@ class admin extends Controller
                 }
             }
         }
-        header("Location: /admin/blogManage");
+      //  header("Location: /admin/blogManage");
     }
 
     public

@@ -6,7 +6,7 @@ $postData = $postM->getById($data["postId"]);
 
 <div class="content-wrapper adminBlogCont">
     <!-- Main content -->
-    <form method="post" action="./updatePost">
+    <form method="post" action="./updatePost" enctype="multipart/form-data">
         <input name="id" id="id" class="d-none" value="<?= $data["postId"] ?>"/>
         <section class="content col-12">
             <div class="row">
@@ -22,10 +22,7 @@ $postData = $postM->getById($data["postId"]);
                             </div>
                         </div>
                         <div class="card-body">
-                            <form name="uploader" enctype="multipart/form-data" method="POST">
-                                Отправить этот файл: <input name="userfile" type="file"/>
-                                <button type="submit" id="submit">Загрузить</button>
-                            </form>
+                            Отправить этот файл: <input name="userfile" type="file"/>
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -64,7 +61,7 @@ $postData = $postM->getById($data["postId"]);
                                         foreach ($catsData as $key => $value) {
                                             ?>
                                             <button class="category-elem"><?= $value["category"] ?></button>
-                                        <?
+                                            <?
                                         }
                                         ?>
                                     </div>
@@ -84,7 +81,7 @@ $postData = $postM->getById($data["postId"]);
                                         foreach ($tagsData as $key => $value) {
                                             ?>
                                             <button class="tag-elem"><?= $value["tag"] ?></button>
-                                        <?
+                                            <?
                                         }
                                         ?>
                                     </div>

@@ -1252,9 +1252,6 @@ div.form_sub .field input[type="email"], div.form_sub .field input[type="email"]
     color: white;
 }
 
-.adminBlogCont {
-    width: 100%;
-}
 .ban-user{
     border: 2px solid red;
     border-radius: 5px;
